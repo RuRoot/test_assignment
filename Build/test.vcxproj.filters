@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_constraint.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_arc.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_assembly.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_contour.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_curve.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_line.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_multiline.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_point.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_curve3d.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_sheet.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_shell.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_map.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_solid.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_surface_.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_point3d.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_surface.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_user.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_multithreading.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_mesh.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_contour.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_curve.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_multiline.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_curve3d.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_map.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_solid.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_space.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_surface.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_wireframe.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\test_draw.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\test_frame1.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\test_frame2.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\test_frame3.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\test_service.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\test_variables.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\study_geometry.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_computation.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_converter.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_mates.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_rendering.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_rendering_.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_rendering_context.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_comanager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_gr_draw.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_manager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_property.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_temporal_plane.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_temporal.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_tree.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_tree_filter.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_window.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_window_add.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_window_find.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_window_move.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_animation_of_bending.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_attributes.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_user_attributes.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_solid_elementary.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_solid_splitting.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_solids_classification.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_parametric_sketch.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_read_write_constraints.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_read_write_c3d_as_part.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_spinning_block.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_check_collisions.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_collision_detection.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_wireframe.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_converter.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_pmi.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_lofted_bend.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_dodecahedron.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_close_corner.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_several_bends.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_polymesh.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test_dialogs.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test_frame.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test_set_filter.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test_set_property.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test_set_tree.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test_std_afx.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test_window_graphic.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_plane.h">
+      <Filter>Create</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_space.h">
+      <Filter>Create</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_varsect.h">
+      <Filter>Create</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Create\test_mesh.h">
+      <Filter>Create</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_plane.h">
+      <Filter>Edit</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Edit\test_edit_space.h">
+      <Filter>Edit</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\test_draw.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\test_frame.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\test_service.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\test_variables.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Main\study_geometry.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_computation.h">
+      <Filter>Make</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_converter.h">
+      <Filter>Make</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_mates.h">
+      <Filter>Make</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_rendering.h">
+      <Filter>Make</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Make\test_rendering_context.h">
+      <Filter>Make</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_comanager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_gr_draw.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_manager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_property.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_property_title.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_style.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_temporal_plane.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_temporal.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_tree.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_tree_filter.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Manager\test_window.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_samples.h">
+      <Filter>Samples</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Samples\test_sample_user_attributes.h">
+      <Filter>Samples</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test.h">
+      <Filter>WinTest</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test_prompt.h">
+      <Filter>WinTest</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test_std_afx.h">
+      <Filter>WinTest</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\Users\Petr\Desktop\С3D\Example_work\Example\Source\Win\test.rc">
+      <Filter>WinTest</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Create">
+      <UniqueIdentifier>{CE7ACB27-7CA5-3B53-AB1C-62E044387B3F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Edit">
+      <UniqueIdentifier>{109AFF18-6879-30E6-986E-C9F01117295E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{45E181C8-CC02-3526-8B80-8F44D52076A8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Make">
+      <UniqueIdentifier>{2543F3D5-B2F5-34B2-9613-CF5898B805A6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{4522BC40-7E74-3823-A2EF-A74F94ACD5E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Samples">
+      <UniqueIdentifier>{E2A127B6-E529-3273-AED4-EEA1F1BFC839}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinTest">
+      <UniqueIdentifier>{65B0380A-08ED-3A2B-9C2C-02FAAF2358C9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

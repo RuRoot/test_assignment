@@ -1,0 +1,270 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="16.0">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AAFFCC60-5BD9-3C7B-8B39-6F3D53EF9CD1}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>test</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)_Build\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)_Build\$(Configuration)\Obj\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">test</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)_Build\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)_Build\$(Configuration)\Obj\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">test</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include;C:\Program Files (x86)\Test\include\c3d;$(ProjectDir)Source\Create;$(ProjectDir)Source\Edit;$(ProjectDir)Source\Main;$(ProjectDir)Source\Make;$(ProjectDir)Source\Manager;$(ProjectDir)Source\Samples;$(ProjectDir)Source\Win;$(ProjectDir)Source\Qt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <OpenMPSupport>true</OpenMPSupport>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_ITERATOR_DEBUG_LEVEL=0;C3D_STANDARD_CXX_LIMIT=2017;UNICODE;_UNICODE;_WIN32_WINNT=0X0502;_CRT_SECURE_NO_WARNINGS;BI_FILEVERSION_MAJOR=2025;BI_PRODUCTVERSION_MAJOR=2025;BI_FILEVERSION_MINOR=1;BI_PRODUCTVERSION_MINOR=1;BI_FILEVERSION_BUILD=11805;BI_PRODUCTVERSION_BUILD=11805;BI_FILEVERSION_REVISION=8;BI_PRODUCTVERSION_REVISION=8;BI_PRODUCTVERSION="2025.1";BI_FILEVERSION="2025.1.11805.8";BI_FILEDESCRIPTION="64-bit VS2019 Unicode";CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_ITERATOR_DEBUG_LEVEL=0;C3D_STANDARD_CXX_LIMIT=2017;UNICODE;_UNICODE;_WIN32_WINNT=0X0502;_CRT_SECURE_NO_WARNINGS;BI_FILEVERSION_MAJOR=2025;BI_PRODUCTVERSION_MAJOR=2025;BI_FILEVERSION_MINOR=1;BI_PRODUCTVERSION_MINOR=1;BI_FILEVERSION_BUILD=11805;BI_PRODUCTVERSION_BUILD=11805;BI_FILEVERSION_REVISION=8;BI_PRODUCTVERSION_REVISION=8;BI_PRODUCTVERSION=\"2025.1\";BI_FILEVERSION=\"2025.1.11805.8\";BI_FILEDESCRIPTION=\"64-bit VS2019 Unicode\";CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include;C:\Program Files (x86)\Test\include\c3d;$(ProjectDir)Source\Create;$(ProjectDir)Source\Edit;$(ProjectDir)Source\Main;$(ProjectDir)Source\Make;$(ProjectDir)Source\Manager;$(ProjectDir)Source\Samples;$(ProjectDir)Source\Win;$(ProjectDir)Source\Qt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include;C:\Program Files (x86)\Test\include\c3d;$(ProjectDir)Source\Create;$(ProjectDir)Source\Edit;$(ProjectDir)Source\Main;$(ProjectDir)Source\Make;$(ProjectDir)Source\Manager;$(ProjectDir)Source\Samples;$(ProjectDir)Source\Win;$(ProjectDir)Source\Qt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>c3d.lib;opengl32.lib;glu32.lib;comctl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Release;$(ProjectDir)Release\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName).pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)Release\c3d.dll" "$(OutDir)" /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include;C:\Program Files (x86)\Test\include\c3d;$(ProjectDir)Source\Create;$(ProjectDir)Source\Edit;$(ProjectDir)Source\Main;$(ProjectDir)Source\Make;$(ProjectDir)Source\Manager;$(ProjectDir)Source\Samples;$(ProjectDir)Source\Win;$(ProjectDir)Source\Qt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <OpenMPSupport>true</OpenMPSupport>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_DEBUG;_DRAWGI;C3D_STANDARD_CXX_LIMIT=2017;UNICODE;_UNICODE;_WIN32_WINNT=0X0502;_CRT_SECURE_NO_WARNINGS;BI_FILEVERSION_MAJOR=2025;BI_PRODUCTVERSION_MAJOR=2025;BI_FILEVERSION_MINOR=1;BI_PRODUCTVERSION_MINOR=1;BI_FILEVERSION_BUILD=11805;BI_PRODUCTVERSION_BUILD=11805;BI_FILEVERSION_REVISION=8;BI_PRODUCTVERSION_REVISION=8;BI_PRODUCTVERSION="2025.1";BI_FILEVERSION="2025.1.11805.8";BI_FILEDESCRIPTION="64-bit VS2019 Unicode";CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_DRAWGI;C3D_STANDARD_CXX_LIMIT=2017;UNICODE;_UNICODE;_WIN32_WINNT=0X0502;_CRT_SECURE_NO_WARNINGS;BI_FILEVERSION_MAJOR=2025;BI_PRODUCTVERSION_MAJOR=2025;BI_FILEVERSION_MINOR=1;BI_PRODUCTVERSION_MINOR=1;BI_FILEVERSION_BUILD=11805;BI_PRODUCTVERSION_BUILD=11805;BI_FILEVERSION_REVISION=8;BI_PRODUCTVERSION_REVISION=8;BI_PRODUCTVERSION=\"2025.1\";BI_FILEVERSION=\"2025.1.11805.8\";BI_FILEDESCRIPTION=\"64-bit VS2019 Unicode\";CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include;C:\Program Files (x86)\Test\include\c3d;$(ProjectDir)Source\Create;$(ProjectDir)Source\Edit;$(ProjectDir)Source\Main;$(ProjectDir)Source\Make;$(ProjectDir)Source\Manager;$(ProjectDir)Source\Samples;$(ProjectDir)Source\Win;$(ProjectDir)Source\Qt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>$(ProjectDir)Include;C:\Program Files (x86)\Test\include\c3d;$(ProjectDir)Source\Create;$(ProjectDir)Source\Edit;$(ProjectDir)Source\Main;$(ProjectDir)Source\Make;$(ProjectDir)Source\Manager;$(ProjectDir)Source\Samples;$(ProjectDir)Source\Win;$(ProjectDir)Source\Qt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>c3d.lib;opengl32.lib;glu32.lib;comctl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Debug;$(ProjectDir)Debug\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName).pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)Debug\c3d.dll" "$(OutDir)" /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Create\test_constraint.cpp" />
+    <ClCompile Include="Source\Create\test_arc.cpp" />
+    <ClCompile Include="Source\Create\test_assembly.cpp" />
+    <ClCompile Include="Source\Create\test_contour.cpp" />
+    <ClCompile Include="Source\Create\test_curve.cpp" />
+    <ClInclude Include="Source\Create\test_plane.h" />
+    <ClCompile Include="Source\Create\test_line.cpp" />
+    <ClCompile Include="Source\Create\test_multiline.cpp" />
+    <ClCompile Include="Source\Create\test_point.cpp" />
+    <ClCompile Include="Source\Create\test_curve3d.cpp" />
+    <ClCompile Include="Source\Create\test_sheet.cpp" />
+    <ClCompile Include="Source\Create\test_shell.cpp" />
+    <ClCompile Include="Source\Create\test_map.cpp" />
+    <ClCompile Include="Source\Create\test_solid.cpp" />
+    <ClInclude Include="Source\Create\test_space.h" />
+    <ClInclude Include="Source\Create\test_varsect.h" />
+    <ClCompile Include="Source\Create\test_surface_.cpp" />
+    <ClCompile Include="Source\Create\test_point3d.cpp" />
+    <ClCompile Include="Source\Create\test_surface.cpp" />
+    <ClCompile Include="Source\Create\test_user.cpp" />
+    <ClCompile Include="Source\Create\test_multithreading.cpp" />
+    <ClCompile Include="Source\Create\test_mesh.cpp" />
+    <ClInclude Include="Source\Create\test_mesh.h" />
+    <ClCompile Include="Source\Edit\test_edit_contour.cpp" />
+    <ClCompile Include="Source\Edit\test_edit_curve.cpp" />
+    <ClInclude Include="Source\Edit\test_edit_plane.h" />
+    <ClCompile Include="Source\Edit\test_edit_multiline.cpp" />
+    <ClCompile Include="Source\Edit\test_edit_curve3d.cpp" />
+    <ClCompile Include="Source\Edit\test_edit_map.cpp" />
+    <ClCompile Include="Source\Edit\test_edit_solid.cpp" />
+    <ClCompile Include="Source\Edit\test_edit_space.cpp" />
+    <ClInclude Include="Source\Edit\test_edit_space.h" />
+    <ClCompile Include="Source\Edit\test_edit_surface.cpp" />
+    <ClCompile Include="Source\Edit\test_edit_wireframe.cpp" />
+    <ClCompile Include="Source\Main\test_draw.cpp" />
+    <ClInclude Include="Source\Main\test_draw.h" />
+    <ClInclude Include="Source\Main\test_frame.h" />
+    <ClCompile Include="Source\Main\test_frame1.cpp" />
+    <ClCompile Include="Source\Main\test_frame2.cpp" />
+    <ClCompile Include="Source\Main\test_frame3.cpp" />
+    <ClCompile Include="Source\Main\test_service.cpp" />
+    <ClInclude Include="Source\Main\test_service.h" />
+    <ClCompile Include="Source\Main\test_variables.cpp" />
+    <ClInclude Include="Source\Main\test_variables.h" />
+    <ClCompile Include="Source\Make\test_computation.cpp" />
+    <ClInclude Include="Source\Make\test_computation.h" />
+    <ClCompile Include="Source\Make\test_converter.cpp" />
+    <ClInclude Include="Source\Make\test_converter.h" />
+    <ClCompile Include="Source\Make\test_mates.cpp" />
+    <ClInclude Include="Source\Make\test_mates.h" />
+    <ClCompile Include="Source\Make\test_rendering.cpp" />
+    <ClInclude Include="Source\Make\test_rendering.h" />
+    <ClCompile Include="Source\Make\test_rendering_.cpp" />
+    <ClCompile Include="Source\Make\test_rendering_context.cpp" />
+    <ClInclude Include="Source\Make\test_rendering_context.h" />
+    <ClInclude Include="Source\Manager\test_comanager.h" />
+    <ClCompile Include="Source\Manager\test_comanager.cpp" />
+    <ClCompile Include="Source\Manager\test_gr_draw.cpp" />
+    <ClInclude Include="Source\Manager\test_gr_draw.h" />
+    <ClCompile Include="Source\Manager\test_manager.cpp" />
+    <ClInclude Include="Source\Manager\test_manager.h" />
+    <ClCompile Include="Source\Manager\test_property.cpp" />
+    <ClInclude Include="Source\Manager\test_property.h" />
+    <ClInclude Include="Source\Manager\test_property_title.h" />
+    <ClInclude Include="Source\Manager\test_style.h" />
+    <ClCompile Include="Source\Manager\test_temporal_plane.cpp" />
+    <ClInclude Include="Source\Manager\test_temporal_plane.h" />
+    <ClCompile Include="Source\Manager\test_temporal.cpp" />
+    <ClInclude Include="Source\Manager\test_temporal.h" />
+    <ClCompile Include="Source\Manager\test_tree.cpp" />
+    <ClInclude Include="Source\Manager\test_tree.h" />
+    <ClCompile Include="Source\Manager\test_tree_filter.cpp" />
+    <ClInclude Include="Source\Manager\test_tree_filter.h" />
+    <ClCompile Include="Source\Manager\test_window.cpp" />
+    <ClInclude Include="Source\Manager\test_window.h" />
+    <ClCompile Include="Source\Manager\test_window_add.cpp" />
+    <ClCompile Include="Source\Manager\test_window_find.cpp" />
+    <ClCompile Include="Source\Manager\test_window_move.cpp" />
+    <ClInclude Include="Source\Samples\test_samples.h" />
+    <ClCompile Include="Source\Samples\test_sample_animation_of_bending.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_attributes.cpp" />
+    <ClInclude Include="Source\Samples\test_sample_user_attributes.h" />
+    <ClCompile Include="Source\Samples\test_sample_user_attributes.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_solid_elementary.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_solid_splitting.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_solids_classification.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_parametric_sketch.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_read_write_constraints.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_read_write_c3d_as_part.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_spinning_block.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_check_collisions.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_collision_detection.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_wireframe.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_converter.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_pmi.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_lofted_bend.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_dodecahedron.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_close_corner.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_several_bends.cpp" />
+    <ClCompile Include="Source\Samples\test_sample_polymesh.cpp" />
+    <ClCompile Include="Source\Win\test.cpp" />
+    <ClInclude Include="Source\Win\test.h" />
+    <ResourceCompile Include="Source\Win\test.rc" />
+    <ClCompile Include="Source\Win\test_dialogs.cpp" />
+    <ClCompile Include="Source\Win\test_frame.cpp" />
+    <ClInclude Include="Source\Win\test_prompt.h" />
+    <ClCompile Include="Source\Win\test_set_filter.cpp" />
+    <ClCompile Include="Source\Win\test_set_property.cpp" />
+    <ClCompile Include="Source\Win\test_set_tree.cpp" />
+    <ClCompile Include="Source\Win\test_std_afx.cpp" />
+    <ClInclude Include="Source\Win\test_std_afx.h" />
+    <ClCompile Include="Source\Win\test_window_graphic.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

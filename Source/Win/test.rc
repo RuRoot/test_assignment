@@ -1,0 +1,1984 @@
+#include <test.h>
+#include <windows.h>
+#include <winver.h>
+
+// Popup macro
+#if defined ( __NATIVE_LANGUAGE__ )
+#pragma code_page(1251)
+#define POPUP_IMP( TEXT_RU, TEXT_EN ) POPUP TEXT_RU
+#else   
+#define POPUP_IMP( TEXT_RU, TEXT_EN ) POPUP TEXT_EN
+#endif
+
+// Menuitem macro
+#if defined ( __NATIVE_LANGUAGE__ )
+#define MENUITEM_IMP( ID, TEXT_RU, TEXT_EN ) MENUITEM TEXT_RU, ID
+#else   
+#define MENUITEM_IMP( ID, TEXT_RU, TEXT_EN ) MENUITEM TEXT_EN, ID
+#endif
+
+
+IDM_MENU_1 MENU
+{
+  POPUP_IMP( "&Файл", "&File" )
+  {
+    MENUITEM_IMP( CM_VIEWFRONT,       "Новый",     "New"   )
+    MENUITEM_IMP( CM_FILEOPEN,        "Открыть\t(Ctrl+O)",   "Open\t(Ctrl+O)"  )
+    MENUITEM_IMP( CM_FILESAVE,        "Сохранить\t(Ctrl+S)", "Save\t(Ctrl+S)"  )
+#ifndef PROTECTION_ENABLED
+    POPUP_IMP( "&Сохранить в", "Save to" )
+    {
+      MENUITEM_IMP( CM_FILESAVE_PREV_RELEASE, "Предыдущую релизную версию", "Previous release version"  )
+      MENUITEM_IMP( CM_FILESAVE_LAST_RELEASE, "Последнюю релизную версию",  "Last release version"     )
+    }
+#endif
+    MENUITEM_IMP( CM_FILEADD,         "Добавить",  "Add"   )
+    MENUITEM_IMP( CM_FILENEW,         "Очистить",  "Clear" )
+    MENUITEM_IMP( CM_CONSOLE,         "Консоль",  "Console" )
+    MENUITEM SEPARATOR
+    MENUITEM_IMP( CM_TREEOPEN,        "Выбрать объекты",     "Select objects"      )
+    MENUITEM_IMP( CM_TREE_TYPE,       "Выбрать по типу",     "Select by type"      )
+    MENUITEM_IMP( CM_TREE_GABARIT,    "Выбрать по габариту", "Select by gabarit"   )
+    MENUITEM_IMP( CM_TREE_ATTRIBUTE,  "Выбрать по атрибуту", "Select by attribute" )
+    MENUITEM_IMP( CM_TREE_EMBODIMENT, "Выбрать исполнение",  "Select embodiment"   )
+    MENUITEM SEPARATOR
+    MENUITEM_IMP( CM_TESTEXIT, "Завершить работу", "Exit" )
+  } // POPUP_IMP( "&Файл", "&File" )
+
+  POPUP_IMP( "&Cоздать", "&Create" )
+  {
+    POPUP_IMP( "Тело", "Solid" )
+    {
+      POPUP_IMP( "Элементарное", "Elementary" )
+      {
+        MENUITEM_IMP( CM_NEWBLOCKSOLID,      "Блок",     "Block"    )
+        MENUITEM_IMP( CM_NEWWEDGESOLID,      "Клин",     "Wedge"    )
+        MENUITEM_IMP( CM_NEWCYLINDERSOLID,   "Цилиндр",  "Cylinder" )
+        MENUITEM_IMP( CM_NEWCONESOLID,       "Конус",    "Cone"     )
+        MENUITEM_IMP( CM_NEWSPHERESOLID,     "Шар",      "Sphere"   )
+        MENUITEM_IMP( CM_NEWTORUSSOLID,      "Тор",      "Torus"    )
+        MENUITEM_IMP( CM_NEWPLATESOLID,      "Пластину", "Plate"    )
+      } // POPUP_IMP( "Элементарное", "Elementary" )
+
+      POPUP_IMP( "По точкам", "By points" )
+      {
+        MENUITEM_IMP( CM_NEWPRISMSOLID,               "Призму",       "Prism"       )
+        MENUITEM_IMP( CM_NEWPYRAMIDSOLID,             "Пирамиду",     "Pyramid"     )
+        MENUITEM_IMP( CM_NEW_ICOSAHEDRON_SOLID,       "Икосаэдр",     "Icosahedron" )
+        MENUITEM_IMP( CM_NEW_SPHERE_POLYHEDRON_SOLID, "Многогранник", "Polyhedron"  )
+        MENUITEM_IMP( CM_NEWNURBSBLOCKSOLID,          "Nurbs-блок",   "Nurbs-block" )
+      } // POPUP_IMP( "По точкам", "By points" )
+
+      POPUP_IMP( "На базе кривых", "Based on curves" )
+      {
+        MENUITEM_IMP( CM_NEWCURVEEXTRUSIONSOLID,    "Выдавливанием поверхностной кривой",       "Extrusion of a curve lying on surface" )
+        MENUITEM_IMP( CM_NEWCURVE3DEXTRUSIONSOLID,  "Выдавливанием трехмерной кривой",          "Extrusion of a spatial curve" )
+        MENUITEM_IMP( CM_NEWCURVEREVOLUTIONSOLID,   "Вращением поверхностной кривой",           "Revolution of a curve lying on surface" )
+        MENUITEM_IMP( CM_NEWCURVE3DREVOLUTIONSOLID, "Вращением трехмерной кривой",              "Revolution of a spatial curve" )
+        MENUITEM_IMP( CM_NEWCURVEEVOLUTIONSOLID,    "Движением кривой",                         "Sweeping" )
+        MENUITEM_IMP( CM_NEWCURVELOFTEDSOLID,       "По сечениям",                              "Lofting" )
+        MENUITEM_IMP( CM_NEWCURVELOFTEDSOLID_CL,    "По сечениям, осевой линии и направляющим", "Lofting with a spine and guide curves" )
+        MENUITEM_IMP( CM_NEWRULEDSOLID,             "Линейчатое",                               "Ruled" )
+      }
+
+      POPUP_IMP( "На базе проволочного каркаса", "Based on wire frame" )
+      {
+        MENUITEM_IMP( CM_NEWWIREFRAMEEXTRUSIONSOLID,  "Выдавливанием проволочного каркаса",    "Extrusion of a wire frame" )
+        MENUITEM_IMP( CM_NEWWIREFRAMEREVOLUTIONSOLID, "Вращением проволочного каркаса",        "Revolution of a wire frame" )
+        MENUITEM_IMP( CM_NEWWIREFRAMEEVOLUTIONSOLID,  "Движением проволочного каркаса",        "Sweeping of a wire frame" )
+      }
+
+      POPUP_IMP( "На базе поверхности", "Based on a surface" )
+      {
+        MENUITEM_IMP( CM_NEWSHEETSOLID,       "Приданием толщины",            "By thickening" )
+        MENUITEM_IMP( CM_NEWELEMENTARYSOLID,  "По элементарной поверхности",  "By an elementary surface" )
+      }
+
+      POPUP_IMP( "На базе тела", "Based on a solid" )
+      {
+        MENUITEM_IMP( CM_SOLID_CONTOUR_CUT,       "Разрезанное двумерной кривой", "Cut by a 2D-curve" )
+        MENUITEM_IMP( CM_SOLID_SURFACE_CUT,       "Разрезанное поверхностью",     "Cut by a surface" )
+        MENUITEM_IMP( CM_SOLID_SHELL_CUT,         "Разрезанное оболочкой",        "Cut by a shell" )
+        MENUITEM_IMP( CM_OFFSET_SOLID,            "Эквидистантное",               "Offset solid" )
+        MENUITEM_IMP( CM_NEWSYMMETRYSOLID,        "Симметричное",                 "Symmetric" )
+        MENUITEM_IMP( CM_NEWRIBSOLID,             "С ребром жесткости",           "With a rib" )
+        MENUITEM_IMP( CM_NEWRIBSHELL,             "Ребро жёсткости",              "Rib" )
+        MENUITEM_IMP( CM_NEWHOLESOLID,            "С отверстием",                 "With a hole" )
+        MENUITEM_IMP( CM_NEWPOCKETSOLID,          "С карманом или бобышкой",      "With a pocket or a boss" )
+        MENUITEM_IMP( CM_NEWSLOTSOLID,            "С пазом",                      "With a slot" )
+        MENUITEM_IMP( CM_NEWUNIONSOLID,           "Набор тел",                    "Set of solids" )
+        MENUITEM_IMP( CM_CREATE_PARTSOLID,        "Часть набора тел",             "Set of solids part" )
+        MENUITEM_IMP( CM_SILHOUETTECONTOURSOLID,  "Разрезанное очерком",          "Cut by a silhouette" )
+        MENUITEM_IMP( CM_NEWSOLIDEXTRUSIONSOLID,  "Выдавливанием тела",           "Extrusion of a solid" )
+        MENUITEM_IMP( CM_NEWSOLIDREVOLUTIONSOLID, "Вращением тела",               "Revolution of a solid" )
+        MENUITEM_IMP( CM_NEWSOLIDEVOLUTIONSOLID,  "Движением тела",               "Evolution of a solid" )
+        MENUITEM_IMP( CM_DUPLICATION_BYGRID,      "Размножение по сетке",         "Duplication by grid" )
+        MENUITEM_IMP( CM_DUPLICATION_BYMATRICES,  "Размножение матрицами",        "Duplication by matrices" )
+        MENUITEM_IMP( CM_SOLIDSEW,                "Сшивкой граней тел",           "Stitching faces of solids" )
+      }
+
+      POPUP_IMP( "На базе оболочки", "Based on a shell" )
+      {
+        MENUITEM_IMP( CM_THINSOLIDBYSHELL,"Приданием толщины", "Thickening" )
+      }
+      POPUP_IMP( "На базе полигональной модели", "Based on a mesh" )
+      {
+        MENUITEM_IMP( CM_MESH_TO_BREP,                  "Преобразовать полигоны в тело",                      "Convert a mesh to the solid" )
+        MENUITEM_IMP( CM_MESH_TO_BREP_SURF_RECON_AUTO,  "Преобразовать в тело c распознаванием поверхностей", "Convert to the solid with surface reconstruction" )
+      }
+
+      POPUP_IMP( "Приклеиванием к телу", "As union with a solid" )
+      {
+        MENUITEM_IMP( CM_BOOLEANUNION,              "Тела",                       "Solid" )
+        MENUITEM_IMP( CM_BOSSCURVEEXTRUSIONSOLID,   "Выдавливания кривой",        "Curve extrusion" )
+        MENUITEM_IMP( CM_BOSSCURVEREVOLUTIONSOLID,  "Вращения кривой",            "Curve revolution" )
+        MENUITEM_IMP( CM_BOSSCURVEEVOLUTIONSOLID,   "Движения кривой",            "Curve sweeping" )
+        MENUITEM_IMP( CM_BOSSCURVELOFTEDSOLID,      "По сечениям",                "Lofting" )
+        MENUITEM_IMP( CM_BOSSCURVELOFTEDSOLID_CL,   "По сечениям и направляющей", "Lofting with a guide curve" )
+        MENUITEM_IMP( CM_BOSSUNIONSOLID,            "Набора тел",                 "Set of solids" )
+      }
+
+      POPUP_IMP( "Вырезанием из тела", "As subtraction with a solid" )
+      {
+        MENUITEM_IMP( CM_BOOLEANDIFFERENCE,         "Тела",                       "Solid" )
+        MENUITEM_IMP( CM_CUTCURVEEXTRUSIONSOLID,    "Выдавливания кривой",        "Curve extrusion" )
+        MENUITEM_IMP( CM_CUTCURVEREVOLUTIONSOLID,   "Вращения кривой",            "Curve revolution" )
+        MENUITEM_IMP( CM_CUTCURVEEVOLUTIONSOLID,    "Движения кривой",            "Curve sweeping" )
+        MENUITEM_IMP( CM_CUTCURVELOFTEDSOLID,       "По сечениям",                "Lofting" )
+        MENUITEM_IMP( CM_CUTCURVELOFTEDSOLID_CL,    "По сечениям и направляющей", "Lofting with a guide curve" )
+        MENUITEM_IMP( CM_CUTUNIONSOLID,             "Набора тел",                 "Set of solids" )
+      }
+
+      POPUP_IMP( "Пересечением с телом", "As intersection with a solid" )
+      {
+        MENUITEM_IMP( CM_BOOLEANINTERSECTION,           "Тела",                         "Solid" )
+        MENUITEM_IMP( CM_INTERSECTCURVEEXTRUSIONSOLID,  "Выдавливания кривой",          "Curve extrusion" )
+        MENUITEM_IMP( CM_INTERSECTCURVEREVOLUTIONSOLID, "Вращения кривой",              "Curve revolution" )
+        MENUITEM_IMP( CM_INTERSECTCURVEEVOLUTIONSOLID,  "Движения кривой",              "Curve sweeping" )
+        MENUITEM_IMP( CM_INTERSECTCURVELOFTEDSOLID,     "По сечениям",                  "Lofting" )
+        MENUITEM_IMP( CM_INTERSECTCURVELOFTEDSOLID_CL,  "По сечениям и направляющей",   "Lofting with a guide curve" )
+        MENUITEM_IMP( CM_INTERSECTUNIONSOLID,           "Набора тел",                   "Set of solids" )
+      }
+
+      POPUP_IMP( "Обработкой граней", "By faces processing" )
+      {
+        MENUITEM_IMP( CM_NEWTHINSOLID_ONESIDE_MONOTHICK,  "Тонкостенное одной толщины",         "Thin-walled with a constant thickness" )
+        MENUITEM_IMP( CM_NEWTHINSOLID_ONESIDE_POLYTHICK,  "Тонкостенное разных толщин",         "Thin-walled with multiple thickness" )
+        MENUITEM_IMP( CM_NEWTHINSOLID_ONESIDE_OFFSET,     "Приданием толщины",                  "Thickening" )
+        MENUITEM_IMP( CM_SOLIDNPDRAFT,                    "Уклонением граней",                  "Faces drafting" )
+        MENUITEM_IMP( CM_NEW_SPLIT_SOLID,                 "Разбивкой грани",                    "Face splitting" )
+        MENUITEM_IMP( CM_FULLFILLETSOLID,                 "Скруглением грани",                  "Face fillet" )
+        MENUITEM_IMP( CM_FACESMERGINGSOLID,               "Cлиянием гладко стыкующихся граней", "Merging smoothly connected faces" )
+      }
+
+      POPUP_IMP( "Обработкой рёбер", "By edges processing" )
+      {
+        MENUITEM_IMP( CM_SOLIDFILLET,   "Скругление по радиусу",  "Fillet with radius" )
+        MENUITEM_IMP( CM_SOLIDCHANNEL,  "Скругление переменное",  "Variable fillet" )
+        MENUITEM_IMP( CM_SOLIDSPAN,     "Скругление по хорде",    "Fillet by a chord" )
+        MENUITEM_IMP( CM_SOLIDSMOOTH,   "Скругление по опоре",    "Fillet by a support" )
+        MENUITEM_IMP( CM_SOLIDCHAMFER,  "Фаска катет-катет",      "Cathetus-cathetus chamfer" )
+        MENUITEM_IMP( CM_SOLIDSLANT1,   "Фаска катет-угол",       "Cathetus-angle chamfer" )
+        MENUITEM_IMP( CM_SOLIDSLANT2,   "Фаска угол-катет",       "Angle-cathetus chamfer" )
+      }
+
+      POPUP_IMP( "Обработкой вершин", "By vertices processing" )
+      {
+        MENUITEM_IMP( CM_SOLIDVERTEXFILLET, "Скруглением вершин", "Vertices fillet" )
+      }
+
+      POPUP_IMP( "Из листового материала", "From sheet material" )
+      {
+        MENUITEM_IMP( CM_CREATESHEETSOLID,    "По плоскому контуру",      "By a planar contour" )
+        MENUITEM_IMP( CM_SHEETMETAL_BYSOLID,  "По произвольному телу",    "Based on an arbitrary solid" )
+        MENUITEM_IMP( CM_BENDOVERSEGMENT,     "Со сгибом вдоль отрезка",  "With a bend along a segment" )
+        MENUITEM_IMP( CM_JOGSHEETSOLID,       "С подсечкой",              "With a jog" )
+        MENUITEM_IMP( CM_BENDBYEDGES,         "Со сгибом по рёбрам",      "With a bend by edges" )
+        MENUITEM_IMP( CM_JOINTBEND,           "С комбинированным сгибом", "With a combined bend" )
+        MENUITEM_IMP( CM_SHEETSOLIDPLATE,     "Добавлением пластины",     "By addition of a plate" )
+        MENUITEM_IMP( CM_SHEETSOLIDHOLE,      "Вырезом отверстия",        "By making a hole" )
+        MENUITEM_IMP( CM_SHEETSOLIDINTERSECT, "Пересечением с контуром",  "By intersection with a contour" )
+        MENUITEM_IMP( CM_CLOSECORNER,         "С замыканием угла",        "With corner closure" )
+        MENUITEM_IMP( CM_STAMPSHEETSOLID,     "С штамповкой",             "With stamping" )
+        MENUITEM_IMP( CM_USERSTAMPSHEETSOLID, "С штамповкой телом",       "With stamping by solid" )
+        MENUITEM_IMP( CM_BEADSHEETSOLID,      "С буртиком",               "With a bead" )
+        MENUITEM_IMP( CM_JALOUSIESHEETSOLID,  "С жалюзи",                 "With jalousie" )
+        MENUITEM_IMP( CM_CREATERULEDSOLID,    "Обечайку",                 "Ruled shell" )
+        MENUITEM_IMP( CM_CREATESHEETRIB,      "С ребром жесткости",       "With a rib" )
+      }
+
+      POPUP_IMP( "Прямым редактированием", "By direct editing" )
+      {
+        MENUITEM_IMP( CM_REMOVEMODIFIEDSOLID,  "Удалением граней",                   "Removal of faces" )
+        MENUITEM_IMP( CM_CREATEMODIFIEDSOLID,  "Созданием тела из граней",           "Solid creation by faces" )
+        MENUITEM_IMP( CM_ACTIONMODIFIEDSOLID,  "Перемещением граней",                "Translation of faces" )
+        MENUITEM_IMP( CM_OFFSETMODIFIEDSOLID,  "Заменой эквидистантными гранями",    "Replace by offset faces" )
+        MENUITEM_IMP( CM_FILLETMODIFIEDSOLID,  "Модифицированием скруглений",        "Fillets modification" )
+        MENUITEM_IMP( CM_FILLETRADIUSSET,      "Изменение радиуса скруглений",       "Change fillet's radius")
+        MENUITEM_IMP( CM_PURIFYMODIFIEDSOLID,  "Удалением скруглений",               "Deletion of fillets" )
+        MENUITEM_IMP( CM_ROTATEMODIFIEDSOLID,  "Поворот граней",                     "Faces rotation" )
+        MENUITEM_IMP( CM_REPLACEMODIFIEDSOLID, "Заменой граней",                     "Replacement of faces" )
+        MENUITEM_IMP( CM_SUPPLEMODIFIEDSOLID,  "Деформированием граней",             "Deformation of faces" )
+        MENUITEM_IMP( CM_MERGERMODIFIEDSOLID,  "Удалением рёбер",                    "Deletion of edges" )
+        MENUITEM_IMP( CM_TRANSFORMEDSOLID,     "Трансформированием габарита",        "Transformation of bounding box" )
+        MENUITEM_IMP( CM_GETHERMODIFIEDSOLID,  "Cлиянием гладко стыкующихся граней", "Merging smoothly connected faces" )
+        MENUITEM_IMP( CM_SUPPLESETCONJUGATION, "Установкой сопряжений",              "Specifying a conjugation" )
+        MENUITEM_IMP( CM_SUPPLESETSIMILARITY,  "Подобием",                           "By similarity" )
+        MENUITEM_IMP( CM_SUPPLESETSMOOTHING,   "Сглаживанием",                       "Smoothing" )
+        MENUITEM_IMP( CM_REPLACEFACESGROUP,    "Заменой группы граней",              "Replacement by a faces group" )
+        MENUITEM_IMP( CM_RESIZE_CYLINDER,      "Изменением размера цилиндра",        "Resizing of a cylinder" )
+        MENUITEM_IMP( CM_RESIZE_SPHERE,        "Изменением размера сферы",           "Resizing of a sphere" )
+      }
+    }
+
+    POPUP_IMP( "Оболочку", "Shell" )
+    {
+      POPUP_IMP( "Заплатку", "Patch" )
+      {
+        MENUITEM_IMP( CM_SHELLPATCH, "По рёбрам", "By edges" )
+        MENUITEM_IMP( CM_CURVEPATCH, "По кривым", "By curves" )
+      }
+
+      POPUP_IMP( "По точкам", "From points" )
+      {
+        MENUITEM_IMP( CM_NEWNURBSSURFACESHELL, "Nurbs-поверхность", "Nurbs-surface" )
+        MENUITEM_IMP( CM_LOFTEDSHELLBYPOINTS,  "Loft-поверхность",  "Loft-surface" )
+        //MENUITEM_IMP( CM_NEWTETRAELEMENT,      "Тетра элемент",     "Tetra element" )
+        //MENUITEM_IMP( CM_NEWOCTAELEMENT,       "Окта элемент",      "Octa element" )
+        MENUITEM_IMP( CM_LATTICE_SHELL,        "Окта сетку",        "Octa lattice" )
+      }
+
+      POPUP_IMP( "На базе кривых", "Based on curves" )
+      {
+        MENUITEM_IMP( CM_NEWCURVEEXTRUSIONSHELL,  "Выдавливанием кривой",       "Curve extrusion" )
+        MENUITEM_IMP( CM_NEWCURVEREVOLUTIONSHELL, "Вращением кривой",           "Curve revolution" )
+        MENUITEM_IMP( CM_NEWCURVEEVOLUTIONSHELL,  "Движением кривой",           "Curve sweeping" )
+        MENUITEM_IMP( CM_LOFTEDSHELLBYCURVES,     "По кривым",                  "By curves" )
+        MENUITEM_IMP( CM_NEWCURVELOFTEDSHELL,     "По плоским сечениям",        "Lofting by planar curve" )
+        MENUITEM_IMP( CM_NEWCURVELOFTEDSHELL_CL,  "По сечениям и направляющей", "Lofting with a guide curve" )
+        MENUITEM_IMP( CM_NEWMESHSHELL,            "По сетке кривых",            "From a mesh of curves" )
+        MENUITEM_IMP( CM_NEWRULSHELL,             "Линейчатую",                 "Ruled" )
+        MENUITEM_IMP( CM_NEWJOINSOLID,            "Поверхность соединения",     "Join surface" )
+      }
+
+      POPUP_IMP( "На базе проволочного каркаса", "Based on wire frame" )
+      {
+        MENUITEM_IMP( CM_NEWWIREFRAMEEXTRUSIONSHELL,  "Выдавливанием проволочного каркаса",    "Extrusion of a wire frame" )
+        MENUITEM_IMP( CM_NEWWIREFRAMEREVOLUTIONSHELL, "Вращением проволочного каркаса",        "Revolution of a wire frame" )
+        MENUITEM_IMP( CM_NEWWIREFRAMEEVOLUTIONSHELL,  "Движением проволочного каркаса",        "Sweeping of a wire frame" )
+      }
+
+      POPUP_IMP( "На базе поверхности", "Based on a surface" )
+      {
+        MENUITEM_IMP( CM_SHELLSURFACE, "По поверхности", "By surface" )
+      }
+
+      POPUP_IMP( "На основе оболочки", "Based on a shell" )
+      {
+        MENUITEM_IMP( CM_SECTION_SHELL,      "Переменного сечения",         "Swept mutable section" )
+        MENUITEM_IMP( CM_SECTION_SHELL_CUT,  "Переменного сечения с подрезкой граней",  "Swept mutable section with faces cutting" )
+        MENUITEM_IMP( CM_CUTSHELL_BYCONTOUR, "Разрезанную кривой",          "Cut by a curve" )
+        MENUITEM_IMP( CM_CUTSHELL_BYSURFACE, "Разрезанную поверхностью",    "Cut by a surface" )
+        MENUITEM_IMP( CM_CUTSHELL_BYSHELL,   "Разрезанную оболочкой",       "Cut by a shell" )
+        MENUITEM_IMP( CM_CUTSHELL_BYOBJECTS, "Усечением объектами",         "Truncated by objects" )
+        MENUITEM_IMP( CM_SOLIDVARIETY,       "Соединением с оболочкой",     "Joining with a shell" )
+        MENUITEM_IMP( CM_SOLIDEXTERNAL,      "Вычитанием оболочки",         "Subtraction of a shell" )
+        MENUITEM_IMP( CM_SOLIDINTERNAL,      "Ограничением оболочкой",      "Clipping by a shell" )
+        MENUITEM_IMP( CM_SHELLOFSOLID,       "Удалением граней",            "By removing of faces" )
+        MENUITEM_IMP( CM_OFFSETSHELLBYFACES, "Эквидистантную к граням",     "Offset to faces" )
+        MENUITEM_IMP( CM_NEWEXTENSIONSHELL,  "Удлинением граней",           "Faces extension" )
+        MENUITEM_IMP( CM_FACESFILLET,        "Скруглением граней",          "Faces fillet" )
+        MENUITEM_IMP( CM_THREEFACESFILLET,   "Скруглением трех граней",     "Three faces fillet" )
+        MENUITEM_IMP( CM_FILLET_BY_BORDERS,  "Скруглением по граничным кривым", "Fillet by border curves" )
+        MENUITEM_IMP( CM_SHELLSEW,           "Сшивкой граней оболочек",     "Stitching faces of shells" )
+        MENUITEM_IMP( CM_MEDIAN_SHELL,       "Срединную по парам граней",   "Median by face pairs" )
+        MENUITEM_IMP( CM_DIVIDED_SHELL,      "Разделением по набору ребер", "Dividing by a group of edges" )
+      }
+
+      MENUITEM_IMP( CM_DRAP_SHELL,      "Драпировка оболочки", "Drap shell" )
+    }
+
+    POPUP_IMP( "Поверхность", "Surface" )
+    {
+      POPUP_IMP( "Элементарную", "Elementary" )
+      {
+        MENUITEM_IMP( CM_NEWPLANE3POINTS, "Плоскость", "Plane" ) 
+        MENUITEM_IMP( CM_NEWCYLINDER3POINTS, "Цилиндр", "Cylinder" )
+        MENUITEM_IMP( CM_NEWCONE3POINTS, "Конус", "Cone" )
+        MENUITEM_IMP( CM_NEWSPHERE3POINTS, "Сферу", "Sphere" )
+        MENUITEM_IMP( CM_NEWTORUS3POINTS, "Тор", "Torus" )
+      }
+
+      POPUP_IMP( "По точкам", "Based on points" )
+      {
+        MENUITEM_IMP( CM_NEWTRIBEZIERSURFACE, "Безье треугольник", "Bezier triangle" )
+        MENUITEM_IMP( CM_NEWRECTANGLENURBS,   "NURBS четырёхугольник", "NURBS quadrangle" )
+        MENUITEM_IMP( CM_NEWSPLINESURFACE,    "NURBS", "NURBS" )
+        MENUITEM_IMP( CM_NEWSIMPLEXSURFACE,   "Симплексную", "Simplex" )
+        MENUITEM_IMP( CM_NEWSIMPLEXSPLINESURFACE, "Симплексный сплайн", "Simplex spline" )
+        MENUITEM_IMP( CM_NEWPLANE,            "Плоскость по центру ", "Plane by a center " )
+        MENUITEM_IMP( CM_NEWPLANEEDGE,        "Плоскость по ребру", "Plane by an edge" )
+      }
+
+      POPUP_IMP( "На базе кривых", "Based on curves" )
+      {
+        MENUITEM_IMP( CM_NEWPLANE_BYCURVE,    "Плоскость", "Plane" )
+        MENUITEM_IMP( CM_NEWEXTRUSION,        "Выдавливания", "Extrusion" )
+        MENUITEM_IMP( CM_NEWREVOLUTION,       "Вращения", "Revolution" )
+        MENUITEM_IMP( CM_NEWEXPANSION,        "Движения", "Motion" )
+        MENUITEM_IMP( CM_NEWEVOLUTION,        "Кинематическую", "Sweeping" )
+        MENUITEM_IMP( CM_NEWSPIRALSURFACE,    "Спиральную", "Spiral" )
+        MENUITEM_IMP( CM_NEWRULEDSURFACE,     "Линейчатую", "Ruled" )
+        MENUITEM_IMP( CM_NEWSECTORSURFACE,    "Секториальную", "Sectorial" )
+        MENUITEM_IMP( CM_NEWCORNERSURFACE,    "По трем кривым", "By three curves" )
+        MENUITEM_IMP( CM_NEWCOVERSURFACE,     "По четырем кривым", "By four curves" )
+        MENUITEM_IMP( CM_NEWLOFTEDSURFACE,    "На семействе кривых", "Lofting" )
+        MENUITEM_IMP( CM_NEWELEVATIONSURFACE, "На семействе с направляющей", "Lofting with a guide" )
+        MENUITEM_IMP( CM_NEWMESHSURFACE,      "На сетке кривых", "Based on a mesh of curves" )
+        MENUITEM_IMP( CM_NEWNURBSSURFACE,     "На семействе NURBS", "Based on a set of NURBS" )
+      }
+
+      POPUP_IMP( "На базе поверхности", "Based on a surface" )
+      {
+        MENUITEM_IMP( CM_NEWOFFSETSURFACE, "Эквидистантную", "Offset" )
+        MENUITEM_IMP( CM_NEWDEFORMEDSURFACE, "Деформированную", "Deformed" );
+        MENUITEM_IMP( CM_NEWEXTENDEDSURFACE, "Продленную параметрами", "Extended by parameters" )
+        MENUITEM_IMP( CM_NEWCURVEBOUNDEDSURFACE, "Усеченную кривыми", "Truncated by curves" )
+        MENUITEM_IMP( CM_NEWJOINSURFACE, "Поверхность cоединения", "Joint surface" )
+        MENUITEM_IMP( CM_NEWGRIDSURFACE, "По триангуляции грани", "By the face triangulation" )
+        MENUITEM_IMP( CM_TRANSLATESURFACETONURBS, "NURBS копию", "NURBS replica" )
+      }
+      POPUP_IMP( "На базе оболочки", "Based on a shell" )
+      {
+        MENUITEM_IMP( CM_SWEPTSECTIONSURFACE, "Переменного сечения", "Mutable cross-section" )
+        MENUITEM_IMP( CM_COONSPATCHSURFACE, "Кунса", "Coons surface" )
+        MENUITEM_IMP( CM_SPLINEPATCHSURFACE, "Гладко сопрягающуюся заплатку", "Smoothly mating patch" )
+        MENUITEM_IMP( CM_UNBENDPLATE, "Развёртку на плоскость", "By sweeping on a plane" )
+      }
+      POPUP_IMP( "На базе полигонального объекта", "Based on a mesh" )
+      {
+        MENUITEM_IMP( CM_FITSURFACE, "Вписать поверхность в множество полигонов", "Fit surface to polygon set" )
+        MENUITEM_IMP( CM_FITSURFACE_AXIS_CONSTRAINT, "Вписать поверхность в множество полигонов триангуляции с ограничениями", "Fit surface to polygon set with constraints" )
+      }
+    }
+
+    POPUP_IMP( "Проволочный каркас", "Wire frame" )
+    {
+      MENUITEM_IMP( CM_NEW_WIREFRAME_BY_CURVES, "По кривым", "By curves" )
+      MENUITEM_IMP( CM_NEW_WIREFRAME_BY_POINTS, "По точкам", "By points" )
+      MENUITEM_IMP( CM_NEW_WIREFRAME_BY_FACE, "По грани тела", "By face of solid" )
+
+      POPUP_IMP( "На базе проволочного каркаса", "Based on wire frame" )
+      {
+        MENUITEM_IMP( CM_NEW_NURBS_WIREFRAME, "NURBS по каркасу", "NURBS by wire frame" )
+        MENUITEM_IMP( CM_NEW_TRIMMED_WIREFRAME, "Усечение каркаса", "Trimmed wire frame" )
+        MENUITEM_IMP( CM_NEW_EXTENDED_WIREFRAME, "Продление каркаса", "Extended wire frame" )
+        MENUITEM_IMP( CM_NEW_OFFSET_WIREFRAME, "Эквидистантный каркас", "Offset wire frame" )
+        MENUITEM_IMP( CM_NEW_WIREFRAME_CONTOURS3D, "Создание контуров по каркасу", "Creating contours from a wireframe" )
+        MENUITEM_IMP( CM_NEW_WIREFRAME_PARTS, "Отделение частей каркаса", "Separating the frame parts" )
+        MENUITEM_IMP( CM_MERGE_EDGES_WIREFRAME, "Слияние ребер каркаса", "Merge edges of wire frame")
+      }
+    }
+
+    POPUP_IMP( "Кривую в пространстве", "Curve in space" )
+    {
+      POPUP_IMP( "По точкам", "By points" )
+      {
+        MENUITEM_IMP( CM_NEWLINESEGMENT3D, "Отрезок",       "Segment" )
+        MENUITEM_IMP( CM_NEWPOLYLINE3D,    "Ломаную",       "Polyline" )
+        MENUITEM_IMP( CM_NEWCUBICSPLINE3D, "Кубический сплайн", "Cubic spline" )
+        MENUITEM_IMP( CM_NEWHERMIT3D,      "Сплайн Эрмита", "Hermite spline" )
+        MENUITEM_IMP( CM_NEWBEZIER3D,      "Сплайн Безье",  "Bezier spline" )
+        MENUITEM_IMP( CM_NEWNURBS3D,       "NURBS", "NURBS" )
+        MENUITEM_IMP( CM_NEWNURBS3D_WITH_MATING, "NURBS c сопряжениями", "NURBS with matings" )
+        MENUITEM_IMP( CM_NEWARC3D,         "Дугу окружности", "Circular arc" )
+        MENUITEM_IMP( CM_NEWARC3DBYPOINTS, "Дугу по точкам", "Arc by points" )
+        MENUITEM_IMP( CM_NEWSPIRALCURVE,   "Спираль",        "Spiral" )
+        MENUITEM_IMP( CM_NEWCONTOUR3D,     "Контур",         "Contour" )
+        MENUITEM_IMP( CM_CURVE_B_SPLINE,   "B_сплайн",       "B_spline" )
+        MENUITEM_IMP( CM_NEWLENGTHCURVE,   "Заданной длины", "Of specified length" )
+      }
+
+      POPUP_IMP( "Плоскую", "Planar" )
+      {
+        MENUITEM_IMP( CM_RECTANGLEONPLANE, "Прямоугольник", "Rectangle" )
+        MENUITEM_IMP( CM_NEWPLANECBSPLN,   "Кубический сплайн", "Cubic spline" )
+        MENUITEM_IMP( CM_NEWPLANENURBS,    "NURBS", "NURBS" )
+        MENUITEM_IMP( CM_NEWPLANEOFFSET,   "Эквидистантную", "Equidistant" )
+
+        POPUP_IMP( "Косинусоиду", "Cosinusoid" )
+        {
+          MENUITEM_IMP( CM_NEWCOSINUSOID_BY_3_POINTS, "По трем точкам",        "By three points" )
+          MENUITEM_IMP( CM_NEWCOSINUSOID_BY_ORIGIN,   "По точке и параметрам", "By point" )
+        }
+          MENUITEM_IMP( CM_NEWCONTOURONPLANE, "Контур", "Contour" )
+          MENUITEM_IMP( CM_NEWCURVEBYPLANE,   "Копию кривой на плоскости", "Copy of a curve on the plane" )
+          MENUITEM_IMP( CM_GETPLANECURVE,     "По плоской пространственной", "Based on a planar curve" )
+      }
+
+      POPUP_IMP( "Коническое сечение", "Conic section" )
+      {
+        MENUITEM_IMP( CM_NEWCIRCLE3D,         "Окружность",           "Circle" )
+        MENUITEM_IMP( CM_NEWCIRCLE3DBYCENTRE, "Окружность по центру", "Circle by a center" )
+        MENUITEM_IMP( CM_NEWCIRCLE3DBYPOINTS, "Окружность по точкам", "Circle by points" )
+        MENUITEM_IMP( CM_NEWELLIPSE3D,        "Эллипс",               "Ellipse" )
+        POPUP_IMP( "NURBS", "NURBS" )
+        {
+          MENUITEM_IMP( CM_NEWNURBSCONIC3D_1, "По двум точкам вершине и дискриминанту", "By two points, a vertex and discriminant" )
+          MENUITEM_IMP( CM_NEWNURBSCONIC3D_2, "По трём точкам и вершине", "By three points and a vertex" )
+          MENUITEM_IMP( CM_NEWNURBSCONIC3D_3, "По трём точкам и 2-ум наклонам", "By three points and 2 slopes" )
+          MENUITEM_IMP( CM_NEWNURBSCONIC3D_4, "По двум точкам, двум наклонам и дискриминанту", "By two points, two slopes and discriminant" )
+          MENUITEM_IMP( CM_NEWNURBSCONIC3D_5, "По четырём точкам и наклону", "By four points and a slope" )
+          MENUITEM_IMP( CM_NEWNURBSCONIC3D_6, "По пяти точкам", "By five points" )
+        }
+      }
+
+      POPUP_IMP( "На базе кривых", "Based on curves" )
+      {
+        MENUITEM_IMP( CM_NEWTRIMMEDCURVE3D,    "Усеченную параметрами",  "Trimmed by parameters" )
+        MENUITEM_IMP( CM_NEWEXTENDEDCURVE3D,   "Продленную параметрами", "Extended by parameters" )
+        MENUITEM_IMP( CM_NEWOFFSETCURVE3D,     "Эквидистантную",         "Equidistant" )
+        MENUITEM_IMP( CM_NEWCURVESBRIDGE3D,    "Кривую-мостик двух кривых", "Bridge between two curves" )
+        MENUITEM_IMP( CM_NEWCURVESCOUPLE3D,    "Соединяющую две трубы",  "Pipes connection" )
+        MENUITEM_IMP( CM_NEWCURVESFILLET3D,    "Скругляющую две кривые", "Smoothing two curves" )
+        MENUITEM_IMP( CM_NEWCURVESCONNCURVE3D, "Соединяющую две кривые", "Connecting two curves" )
+        MENUITEM_IMP( CM_NEWEVOLUTIONSECTION,  "По закону направляющей кинематики", "By the law of sweep surface with guide curve" )
+        MENUITEM_IMP( CM_NEWCONTOUR3DBYCURVES, "Контур", "Contour" )
+        MENUITEM_IMP( CM_NEWFILLETCONTOUR3DBYCURVES, "Контур со скруглением", "Contour with fillet" )
+        MENUITEM_IMP( CM_NEWCHAMFERCONTOUR3DBYCURVES, "Контур с фаской", "Contour with chamfer" )
+        MENUITEM_IMP( CM_NEWCURVE_BY_TWO_PROJECTIONS, "По двум плоским проекциям", "By two planar projections" )
+        MENUITEM_IMP( CM_NEWSPACECURVEBYPLANE,  "Копию кривой на плоскости", "Planar curve replica" )
+        MENUITEM_IMP( CM_TRANSLATECURVETONURBS, "NURBS копию",           "NURBS replica" )
+        MENUITEM_IMP( CM_APPROXBYARCS,          "Аппроксимацией дугами и отрезками", "Straight and circular segments approximation" )
+        MENUITEM_IMP( CM_UNWRAPCURVE,           "Развертка кривой",      "Unwrap curve" )
+        MENUITEM_IMP( CM_NEWCURVESUNWRAPPING,   "Развертка кривых с поверхности",      "Unwrap curves from a surface" )
+
+        POPUP_IMP( "Аппроксимация гладким нурбсом", "Fit smooth NURBS" )
+        {
+          MENUITEM_IMP( CM_FIT_CURVE_TOLERANCE, "С точностью", "With tolerance" )
+          MENUITEM_IMP( CM_FIT_CURVE_UNIFORM, "С равномерными узлами", "With uniform knots" )
+        }
+
+        MENUITEM_IMP( CM_FIT_CIRCLE_LS, "Вписать окружность", "Fit circle" )
+        MENUITEM_IMP( CM_FIT_LINE_LS, "Вписать прямую", "Fit line" )
+        MENUITEM_IMP( CM_FIT_ELLIPSE_LS, "Вписать эллипс", "Fit ellipse" )
+          
+      }
+
+      POPUP_IMP( "На базе проволочного каркаса", "Based on wire frame" )
+      {
+        MENUITEM_IMP( CM_NEWCONTOURS3DBYWIREFRAME, "Контуры по ребрам проволочного каркаса", "Contours along the edges of the wire frame" )
+      }
+
+      POPUP_IMP( "На базе поверхности", "Based on surfaces" )
+      {
+        MENUITEM_IMP( CM_NEWSURFACEBORDER,     "Границу поверхности",             "Surface boundary" )
+        MENUITEM_IMP( CM_NEWCURVEONSURFACE,    "Проекцию кривой на поверхность",  "Projection of a curve onto a surface" )
+        MENUITEM_IMP( CM_NEWCURVEDIRECTVECTOR, "Проекцию кривой по направлению",  "Projection of a curve by a direction" )
+        MENUITEM_IMP( CM_NEWPROJECTIONCURVE_ON_SURFACE, "Проекционную кривую на поверхности", "Projection curve on a surface" )
+        MENUITEM_IMP( CM_NEWCURVE_ON_SURFACE_BY_POINTS, "Кривую на поверхности по точкам", "Curve on a surface by points" )
+        MENUITEM_IMP( CM_NEWCURVESWRAPPING,    "Обертывание кривыми поверхности", "Surface curves wrapping" )
+      }
+
+      POPUP_IMP( "На базе тела", "Based on a solid" )
+      {
+        MENUITEM_IMP( CM_NEWEDGESCURVE,        "Контур по ребрам",         "Contour by edges" )
+        MENUITEM_IMP( CM_NEWFACECONTOUR,       "Контур по ребрам грани",   "Contour by face edges" )
+        MENUITEM_IMP( CM_NEWFACEPROJECTION,    "Проекции рёбер грани",     "Edges projection on a face" )
+        MENUITEM_IMP( CM_NEWEDGEMAP,           "Проекцию ребра на грань",  "Edge projection on a face" )
+        MENUITEM_IMP( CM_NEWCURVE_CENTER_LINE, "Осевые линии грани",       "Center lines of a face" )
+        MENUITEM_IMP( CM_NEWCURVE_BY_VERTICES, "Между вершинами грани",    "Between vertices of a face" )
+        MENUITEM_IMP( CM_NEWFACECURVE,         "На поверхности грани",     "On the face surface" )
+        MENUITEM_IMP( CM_CURVE_FACEPROJECTION, "Проекцию кривой на грань", "Projection of a curve onto a face" )
+        MENUITEM_IMP( CM_EXTRACT_BEAM, "Балочные элементы", "Beam elements" )
+      }
+
+      POPUP_IMP( "Пересечения", "Intersection" )
+      {
+        MENUITEM_IMP( CM_NEWSURFACEINTERSECTION,    "Двух поверхностей", "Two surfaces" )
+        MENUITEM_IMP( CM_NEWSURFACEINTERSECTIONONEPOINT,    "Двух поверхностей по точке и направлению", "Two surfaces by point and direction" )
+        MENUITEM_IMP( CM_NEWSURFACESOLIDINTERSECT,  "Поверхности и тела", "A surface and a solid" )
+        MENUITEM_IMP( CM_NEWSOLIDINTERSECTION,      "Двух тел", "Two solids" )
+        MENUITEM_IMP( CM_NEWFACESINTERSECTION,      "Двух граней тел", "Two faces of solids" )
+        MENUITEM_IMP( CM_MESH_MESH_INTERSECTION,    "Двух полигональных объектов", "Two polygonal objects" )
+      }
+
+      POPUP_IMP( "Прямую", "Line" )
+      {
+        MENUITEM_IMP( CM_NEWLINE3D,                 "По двум точкам",              "By two points" )
+        MENUITEM_IMP( CM_NEWLINEPLANEPLANE,         "Пересечения двух плоскостей", "Two planes intersection" )
+      }
+
+      POPUP_IMP( "На базе текста", "Based on text" )
+      {
+        MENUITEM_IMP( CM_NEWCHARCURVE3D, "Вводом формул", "By specifying formulae" )
+      }
+    }
+
+    POPUP_IMP( "Точку в пространстве", "Point in space" )
+    {
+      MENUITEM_IMP( CM_NEWPOINT, "По координатам", "By coordinates" )
+
+      POPUP_IMP( "На базе кривой", "Based on a curve" )
+      {
+        MENUITEM_IMP( CM_NEWNEARPOINTONCURVE, "Ближайшую проекцию на кривую", "The closest projection onto the curve" )
+        MENUITEM_IMP( CM_NEWCURVECURVATUREPOINT, "Перегибы и экстремумы кривизны кривой", "Bends and extremes of curvature of curve" )
+        MENUITEM_IMP( CM_NEWPOINTONCURVE,   "Проекцию на кривую",           "Projection onto the curve" )
+        MENUITEM_IMP( CM_NEWCURVEISOCLINAL, "Изоклины кривой ",             "Curve's isoclines " )
+        MENUITEM_IMP( CM_NEWEVENPARAM,  "Вдоль параметра кривой",       "Along the curve parameter " )
+        MENUITEM_IMP( CM_NEWEVENLENGTH, "Вдоль длины кривой",           "Along the curve length" )
+        MENUITEM_IMP( CM_DISTANCEALONG, "На заданном расстоянии",       "At the given distance" )
+        MENUITEM_IMP( CM_CREATECURVEISOPOINTS, "Точки изоклин кривой",         "Points of isocline curve" )
+      }
+
+      POPUP_IMP( "На базе поверхности", "Based on a surface" )
+      {
+        MENUITEM_IMP( CM_NEWNEARPOINTONSURFACE,   "Ближайшую проекцию на поверхность",      "The closest projection onto a surface" )
+        MENUITEM_IMP( CM_NEWPOINTONSURFACE,       "Проекцию на поверхность",                "Projection onto a surface" )
+        MENUITEM_IMP( CM_NEWDIRECTPOINTONSURFACE, "Проекцию на поверхность по направлению", "Projection onto a surface by direction" )
+        MENUITEM_IMP( CM_NEWSURFACEISOCLINAL,     "Изоклины поверхности",                   "Isoclines of a surface" )
+        MENUITEM_IMP( CM_NEWPOINTS_ON_SURFACE,    "Группу точек на поверхности",            "Group of points on a surface" )
+        MENUITEM_IMP( CM_WRAPPOINTS,              "Свертка с плоскости на поверхность",     "Wrap from plane to surface" )
+        MENUITEM_IMP( CM_UNWRAPPOINTS,            "Развертка с поверхности на плоскость",   "Unwrap from surface to plane" )
+      }
+
+      POPUP_IMP( "На базе тела", "Based on a solid" )
+      {
+        MENUITEM_IMP( CM_NEWPOINTONSOLID,       "Проекцию на тело",                 "Projection onto a solid" )
+        // No impementation MENUITEM_IMP( CM_NEWDIRECTPOINTONSOLID, "Проекцию на тело по направлению",  "Projection onto a solid by direction" )
+        MENUITEM_IMP( CM_NEWPOINTS_BY_SOLID,    "Точечный каркас по вершинам тела", "Point frame by solid vertices" )
+      }
+
+      POPUP_IMP( "Пересечения", "Intersection" )
+      {
+        MENUITEM_IMP( CM_NEWPOINTCURVECROSSING, "Двух кривых", "Two curves" )
+        MENUITEM_IMP( CM_NEWPOINTWIREFRAMEINTERSECT, "Двух проволочных каркасов", "Two wire frames" )
+        MENUITEM_IMP( CM_NEWPOINTCURVESURFACE, "Кривой и поверхности", "A curve and a surface" )
+        MENUITEM_IMP( CM_NEWPOINTCURVESOLID, "Кривой и тела", "A curve and a solid" )
+      }
+    }
+
+    POPUP_IMP( "Полигональный объект", "Polygonal object" )
+    {
+      MENUITEM_IMP( CM_NEWMESH_BYSHELL,            "По триангуляции тела",          "By solid triangulation" )
+      MENUITEM_IMP( CM_NEWMESH_BYFACE,             "По триангуляции грани",         "By face triangulation" )
+      MENUITEM_IMP( CM_CUTMESH_BYPLANE,            "Резкой модели плоскостью",      "Cutted model by plane" )
+      MENUITEM_IMP( CM_CUTMESH_BYLINE,             "Резкой полигонального объекта линией",  "By cutting of polygonal object by line" )
+      MENUITEM_IMP( CM_NEWMESH_BY_UNION,           "Объединением с полигональным объектом", "As union with a polygonal object" )
+      MENUITEM_IMP( CM_NEWMESH_BY_INTERSECT,       "Пересечением с полигональным объектом", "As intersection with a polygonal object" )
+      MENUITEM_IMP( CM_NEWMESH_BY_SUBSTRACT,       "Вырезанием из полигонального объекта",  "As subtraction with a polygonal object" )
+      MENUITEM_IMP( CM_MESH_SECTION,               "Сечение полигонального объекта",        "Cutting section of polygonal object" )
+      MENUITEM_IMP( CM_NEWCONVEXPOLYHEDRON,        "Абрис полигонального объекта",  "Sketch of a mesh object" )
+      MENUITEM_IMP( CM_NEW_ICOSAHEDRON_MESH,       "Икосаэдр",                      "Icosahedron" )
+      MENUITEM_IMP( CM_NEW_SPHERE_POLYHEDRON_MESH, "Многогранник сферы",            "Sphere polyhedron" )
+      MENUITEM_IMP( CM_NEW_MESH_CONVEX_HULL,       "Выпуклую оболочку по триангуляции", "Convex hull for mesh" )
+    }
+
+    POPUP_IMP( "Полигональная сетка", "Polymesh" )
+    {
+      MENUITEM_IMP( CM_CREATE_POLYMESH, "Создать на основе MbMesh", "Create by MbMesh" )
+      MENUITEM_IMP( CM_CREATE_POLYMESH_BY_SHELL, "Создать на основе MbSolid", "Create by MbSolid" )
+      MENUITEM_IMP( CM_CUT_PLANE_POLYMESH, "Резкой плоскостью", "Cut by plane" )
+      MENUITEM_IMP( CM_POLYMESH_UNION, "Объединением с полигональным объектом", "As union with a polygonal object" )
+      MENUITEM_IMP( CM_POLYMESH_INTERSECT, "Пересечением с полигональным объектом", "As intersection with a polygonal object" )
+      MENUITEM_IMP( CM_POLYMESH_SUBTRACT, "Вырезанием из полигонального объекта", "As subtraction with a polygonal object" )
+    }
+
+    POPUP_IMP( "Объект модели", "Model object" )
+    {
+      MENUITEM_IMP( CM_NEWASSEMBLY, "Сборочную единицу", "Assembly" )
+      MENUITEM_IMP( CM_NEWINSTANCE, "Вставку объекта",   "Instance" )
+    }
+
+    POPUP_IMP( "Проекцию объекта", "Projection of an object" )
+    {
+      MENUITEM_IMP( CM_NEWCURVEHIDEMAP,               "Кривой",                "Curve" )
+      MENUITEM_IMP( CM_NEWSURFACEHIDEMAP,             "Поверхности",           "Surface" )
+      MENUITEM_IMP( CM_NEWSOLIDHIDEMAP,               "Объекта",               "Item" )
+      MENUITEM_IMP( CM_NEWSOLIDSHIDEMAP,              "Сборки",                "Assembly" )
+      MENUITEM_IMP( CM_NEWALLSOLIDSHIDEMAP,           "Всех объектов",         "All items" )
+      MENUITEM_IMP( CM_NEWOUTLINESOLIDS,              "Очерк тел",             "Outline of items" )
+      MENUITEM_IMP( CM_NEW_SOLID_CONTOUR_SECTION_MAP, "Сечение тела контуром", "Solid section by a contour" )
+      MENUITEM_IMP( CM_NEW_SOLID_LOCAL_SECTION_MAP,   "Местный разрез тела",   "Solid local section" )
+    }
+
+    POPUP_IMP( "Резьбу", "Thread" )
+    {
+      MENUITEM_IMP( CM_NEWTHREAD_INSPACE, "Без привязки к телу", "Without linking to a solid")
+      MENUITEM_IMP( CM_NEWTHREAD_ONSOLID, "С привязкой к телу",  "Linked to a solid")
+      MENUITEM_IMP( CM_NEWTHREAD_MAPPING_BYPARAMS, "Отображение резьбы (по параметрам)", "Mapping of a thread (by parameters)")
+      MENUITEM_IMP( CM_NEWTHREAD_MAPPING_BYTHREAD, "Отображение резьбы (по объекту)", "Mapping of a thread (by object)")
+    }
+
+    POPUP_IMP( "Крепеж", "Fastener" )
+    {
+      MENUITEM_IMP( CM_FASTENERBYPOINT, "По точке",  "By a point")
+      MENUITEM_IMP( CM_FASTENERBYCURVE, "По кривой", "By a curve")
+    }
+
+    POPUP_IMP( "Воксели", "Voxels" )
+    {
+      MENUITEM_IMP( CM_VOXEL_REPRESENTATION, "По телу",  "By a solid")
+    }
+
+    //POPUP_IMP( "Конструктивный объект", "Constructive object" )
+    //{
+    //  MENUITEM_IMP( CM_NEW_CONSTRUCTIVE_BY_POINTS, "По трем точкам",  "By three points")
+    //}
+
+    MENUITEM SEPARATOR
+    POPUP_IMP( "Кривую на плоскости", "Curve on plane" )
+    {
+      POPUP_IMP( "По точкам", "By points" )
+      {
+        MENUITEM_IMP( CM_NEWSEGMENTPOINTPOINT, "Отрезок", "Segment" )
+        MENUITEM_IMP( CM_NEWLINESEGDMIN, "Отрезок по расстоянию", "Segment by the distance" )
+        MENUITEM_IMP( CM_NEWPOLYLINE, "Ломаную", "Polyline" )
+        MENUITEM_IMP( CM_RECTANGLE, "Прямоугольник", "Rectangle" )
+        MENUITEM_IMP( CM_REGULARPOLYGON, "Многоугольник", "Polygon" )
+        MENUITEM_IMP( CM_NEWCBSPLN2D, "Кубический сплайн", "Cubic spline" )
+        MENUITEM_IMP( CM_NEWHERMIT, "Сплайн Эрмита", "Hermite spline" )
+        MENUITEM_IMP( CM_NEWBEZIER, "Сплайн Безье", "Bezier spline" )
+        MENUITEM_IMP( CM_NEWBSPLINE, "NURBS", "NURBS" )
+      }
+
+      POPUP_IMP( "Окружность", "Circle" )
+      {
+        MENUITEM_IMP( CM_CIRCLETHREEPOINTS, "По трем точкам", "By three points" )
+        MENUITEM_IMP( CM_CIRCLECENTREPOINTON, "По центру и точке", "By a center and a point" )
+        MENUITEM_IMP( CM_CIRCLECENTRERADIUS, "По центру и радиусу", "By a center and radius" )
+        MENUITEM_IMP( CM_CIRCLERADIUSTWOPOINTS, "Две окружности по радиусу и двум точкам", "Two circles by radius and two points" )
+        MENUITEM_IMP( CM_CIRCLECENTREONRADIUSPOINTON, "По центру на объекте, точке и радиусу", "By centre on an object, point and radius" )
+        MENUITEM_IMP( CM_CIRCLECENTREONTWOPOINTS, "По центру на объекте и двум точкам", "By centre on an object and two points" )
+        MENUITEM_IMP( CM_CIRCLETANENTITYCENTRE, "Касательную по центру", "Tangent given a center" )
+        MENUITEM_IMP( CM_CIRCLETANENTITYTWOPOINTS, "Касательную по двум точкам", "Tangent by two points" )
+        MENUITEM_IMP( CM_CIRCLETANENTITYRADIUSPOINTON, "Касательную по точке и радиусу", "Tangent by a point given a radius" )
+        MENUITEM_IMP( CM_CIRCLETANTWOENTITIESPOINTON, "Касательную к двум объектам по точке", "Tangent to two objects by a point" )
+        MENUITEM_IMP( CM_CIRCLETANTWOENTITIESRADIUS, "Касательную к двум объектам", "Tangent to two objects" )
+        MENUITEM_IMP( CM_CIRCLETANTHREEENTITIES, "Касательную к трем объектам", "Tangent to three objects" )
+      }
+
+      POPUP_IMP( "Дугу окружности", "Circular arc" )
+      {
+        MENUITEM_IMP( CM_NEWARC_3_POINTS, "По трем точкам", "By three points" )
+        MENUITEM_IMP( CM_ARC2POINTSRADIUS, "По двум точкам и радиусу", "By two points and a radius" )
+        MENUITEM_IMP( CM_ARCCENTRE2POINTS, "По центру и двум точкам", "From a center and two points" )
+        MENUITEM_IMP( CM_ARCCIRCLE2POINTS, "По окружности и точкам", "Given a circle and points" )
+        MENUITEM_IMP( CM_ARCTANGENTCURVE2POINTS, "Касательную по точкам", "Tangent by points" )
+        MENUITEM_IMP( CM_ARCTANGENTCURVERADPOINTON, "Касательную по точке и радиусу", "Tangent by a point given a radius" )
+      }
+
+      POPUP_IMP( "Коническое сечение", "Conic section" )
+      {
+        MENUITEM_IMP( CM_ELLIPSECENTRE3POINTS, "Эллипс по центру и точкам", "Ellipse by a center and points" )
+        MENUITEM_IMP( CM_ELLIPSE3POINTS, "Эллипс по точкам", "Ellipse by points" )
+        MENUITEM_IMP( CM_ELLIPSECENTRE_AB, "Эллипс по центру и полуосям", "Ellipse by a center and semiaxes" )
+        MENUITEM_IMP( CM_ELLIPSE_TANGENT2CURVES, "Касательный эллипс", "Tangent ellipse" )
+        MENUITEM_IMP( CM_NEWELLIPSEARC, "Дугу эллипса", "Elliptical arc" )
+        MENUITEM_IMP( CM_NEWCONIC, "NURBS дугу", "NURBS arc" )
+      }
+
+      POPUP_IMP( "На базе кривой", "Based on a curve" )
+      {
+        MENUITEM_IMP( CM_SPLINE_EQUID, "Эквидистантную", "Equidistant" )
+        MENUITEM_IMP( CM_NEWOFFSETEXTENDED, "Эквидистантную продолженную", "Extended equidistant" )
+        MENUITEM_IMP( CM_NEWPLANECURVEBYSPACE, "Копию пространственной кривой", "Spatial curve replica" )
+        MENUITEM_IMP( CM_SPLINENURBS, "NURBS копию", "NURBS replica" )
+        MENUITEM_IMP( CM_MEDIANCURVE, "Срединная линия", "Median curve" )
+      }
+
+      POPUP_IMP( "На базе тела", "Base on a solid" )
+      {
+        MENUITEM_IMP( CM_NEWEDGEMAPONPLANE, "Проекцию ребра на грань", "Edge projection on a face" )
+        MENUITEM_IMP( CM_LATHESECTIONCURVES, "Токарное сечение", "Lathe section" )
+      }
+
+      POPUP_IMP( "Прямую", "Line" )
+      {
+        MENUITEM_IMP(  CM_LINEPNTPNT,"По двум точкам", "By two points" )
+        MENUITEM_IMP( CM_LINEPNTANLGE0X, "По точке и углу", "By a point and an angle" )
+        MENUITEM_IMP( CM_LINEPOINTANGLE, "По точке и углу к линии", "By a point and an angle to line" )
+        MENUITEM_IMP( CM_LINEPNTDIST, "Параллельно на расстоянии", "Parallel at distance" )
+        MENUITEM_IMP( CM_LINEPRLPNT, "По точке параллельно", "Parallel existing through a point " )
+        MENUITEM_IMP( CM_LINEPRPPNT, "Перпендикуляр из точки", "Perpendicular from a point" )
+        MENUITEM_IMP( CM_LINEPNTTANG, "Касательную в точке", "Tangent at a point" )
+        MENUITEM_IMP( CM_LINETAN2CIR, "Касательную к двум кривым", "Tangent to two curves" )
+        MENUITEM_IMP( CM_LINEANGLETAN_CIRCLE, "Касательную под углом", "Tangent at an angle" )
+        MENUITEM_IMP( CM_LINEBISECTOR, "Гипотенузу", "Hypotenuse" )
+        MENUITEM_IMP( CM_GORISONTALLINE, "Горизонтальную", "Horizontal" )
+        MENUITEM_IMP( CM_VERTICALLINE, "Вертикальную", "Vertical" )
+      }
+    }
+
+    POPUP_IMP( "Контур на плоскости", "Contour on a plane" )
+    {
+      MENUITEM_IMP( CM_NEWCONTOUR,            "Построением кривых",                         "Sequential curves creation" )
+    //MENUITEM_IMP( CM_NEWENVELOPCONTOUR,     "По точке внутри",                            "By a point inside")
+      MENUITEM_IMP( CM_HANDENVELOPE,          "С обходом по стрелке",                       "With bypass by the arrow" )
+      MENUITEM_IMP( CM_CONTOUREQUID,          "Эквидистантный (устаревший)",                "Equidistant (outdated)" ) // Kompas only, use CM_MAKEOFFSETCONTOUR (see below)
+      MENUITEM_IMP( CM_MAKEOFFSETCONTOUR,     "Эквидистантный",                             "Equidistant" )
+      MENUITEM_IMP( CM_MAKESLOPECONTOUR,      "Эквидистантный выдавливания",                "Equidistant of extrusion" )
+      MENUITEM_IMP( CM_MAKEOFFSETTHINCONTOUR, "Эквидистантный вращения",                    "Equidistant of rotation")
+      MENUITEM_IMP( CM_CONTOURFILLET,         "Со скруглением угла",                        "With rounding of the corner" )
+      MENUITEM_IMP( CM_CONTOURCHAMFER,        "С фаской угла",                              "With chamfer of the corner" )
+      MENUITEM_IMP( CM_ALL_EMBRACING_CNTRS,   "Обхватывающие контуры",                      "Enclosing contours" )
+      MENUITEM_IMP( CM_ENCLOSECONTOURS,       "Вокруг точки",                               "Around a point" )
+      MENUITEM_IMP( CM_OUTERCONTOURS,         "Вокруг кривых",                              "Around curves" )
+      MENUITEM_IMP( CM_RECONSTRUCTCONTOURS,   "Восстановить контуры",                       "Restore contours" )
+      MENUITEM_IMP( CM_MAKE_ALL_REGIONS,      "Построением регионов",                       "By building regions" )
+      MENUITEM_IMP( CM_REGIONSBOOLEANOPER,    "Выполнением булевой операции над регионами", "By performing a boolean operation on regions" )
+      MENUITEM_IMP( CM_MAKE_UNION_REGIONS,    "Объединением регионов (контуров)",           "By merging of regions (contours)" )
+      MENUITEM_IMP( CM_NEWCONTOURWITHBREAKS,  "Контур с разрывами",                         "Contour with breaks" )
+    }
+
+    POPUP_IMP( "Точку на плоскости", "Point on the plane" )
+    {
+      MENUITEM_IMP( CM_POINTPOSITION,  "По координатам", "By coordinates" )
+      POPUP_IMP( "На базе кривых", "Based on curves" )
+      {
+        MENUITEM_IMP( CM_POINTON_CURVE, "На кривой", "On curve" )
+        MENUITEM_IMP( CM_N_POINTS_ON_CURVE, "Вдоль длины кривой", "Along the length of curve" )
+        MENUITEM_IMP( CM_POINTONPARAMCURVE, "Вдоль параметра кривой", "Along the parameter of curve" )
+        MENUITEM_IMP( CM_POINTWEIGHTCENTRE, "Центр тяжести кривой", "Curve center of gravity" )
+      }
+      POPUP_IMP( "Пересечения", "Intersections" )
+      {
+        MENUITEM_IMP( CM_EDITINTERSECT, "Двух кривых", "Of two curves" )
+        MENUITEM_IMP( CM_POINTINTERSECT, "Ближайщую", "The closest" )
+        MENUITEM_IMP( CM_EDITSELF_INTERSECT, "Самопересечения", "Self-intersections" )
+      }
+    }
+
+    POPUP_IMP( "Мультилинию на плоскости", "Multiline on a plane" )
+    {
+      MENUITEM_IMP( CM_CREATECNTRSMULTILINE, "На базе контура", "Based on a contour" )
+      MENUITEM_IMP( CM_CREATEMULTILINE, "Построением базовой кривой", "By construction of the base curve" )
+    }
+    MENUITEM SEPARATOR
+    POPUP_IMP( "Копию", "Replica" )
+    {
+      MENUITEM_IMP( CM_DUPLICATEOBJECT,       "Объекта",    "Of object" )
+      MENUITEM_IMP( CM_MIRRORDUPLICATEOBJECT, "Зеркальную", "Mirror" )
+    }
+    MENUITEM SEPARATOR
+    POPUP_IMP( "Сопряжение", "Mating" )
+    {
+      MENUITEM_IMP( CM_MATE_COINCIDENCE, "Совпадение", "Coincidence" )   // \ru совпадение объектов \en objects coincidence
+      MENUITEM_IMP( CM_MATE_PARALLELISM, "Параллельность", "Parallelism" ) // \ru параллельность \en parallelism
+      MENUITEM_IMP( CM_MATE_PERPENDICULAR, "Перпендикулярность", "Perpendicularity" ) // \ru перпендикулярность \en perpendicularity
+      MENUITEM_IMP( CM_MATE_TANGENCY, "Касание", "Tangency" )           // \ru касательность \en tangency
+      MENUITEM_IMP( CM_MATE_CONCENTRIC, "Концентричность", "Concentricity" ) // \ru концентричность \en сoncentricity
+      MENUITEM_IMP( CM_MATE_DISTANCE, "На расстоянии", "Distance" )      // \ru расстояние между объектами \en distance between objects
+      MENUITEM_IMP( CM_MATE_ANGLE, "Под углом", "Angle" )               // \ru угол между объектами \en angle between objects
+    }
+
+    POPUP_IMP( "Геометрические ограничения 2D", "Geometric constraints 2D" )
+    {
+      MENUITEM_IMP( CM_GC_COINCIDENCE, "Совпадение точек", "Points coincidence" ) // \ru совпадение объектов \en objects coincidence
+      MENUITEM_IMP( CM_GC_PARALLELISM, "Параллельность", "Parallelism" )          // \ru параллельность \en parallelism
+      MENUITEM_IMP( CM_GC_PERPENDICULAR, "Перпендикулярность", "Perpendicularity" ) // \ru перпендикулярность \en perpendicularity
+      MENUITEM_IMP( CM_GC_TANGENCY, "Касание", "Tangency" )                       // \ru касательность \en tangency
+      MENUITEM_IMP( CM_GC_CONCENTRIC, "Концентричность", "Concentricity" )        // \ru концентричность \en сoncentricity
+      MENUITEM_IMP( CM_GC_DISTANCE, "Метрическое расстояние", "Metric distance" ) // \ru расстояние между объектами \en distance between objects
+      MENUITEM_IMP( CM_GC_ANGLE, "Угловое расстояние", "Angular distance" )       // \ru угол между объектами \en angle between objects
+    }
+    POPUP_IMP( "Размер", "Dimension" )
+    {
+      MENUITEM_IMP( CM_RADIUSDIMENSION, "По точке на поверхности", "By a point on a surface" )
+    }
+  }
+
+  POPUP_IMP( "&Mодифицировать", "&Modify" )
+  {
+    POPUP_IMP( "Тело или оболочку", "Solid or shell" )
+    {
+      MENUITEM_IMP( CM_REBUILD_SHELL,                  "Перестроить",                        "Rebuild"                            )
+      MENUITEM_IMP( CM_REBUILD_ALL_SHELLS,             "Перестроить все тела и оболочки",    "Rebuild all solids and shells"      )
+      MENUITEM_IMP( CM_REBUILD_SHELL_WITHCOPYMODE,     "Перестроить с выбором режима копирования", "Rebuild with a choice of copy mode" )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_TRANSLATESOLIDTOSURFACES,       "Превратить в поверхности",           "Transform to surfaces" )
+      MENUITEM_IMP( CM_TRANSLATESOLIDTOFACES,          "Превратить в грани",                 "Transform to faces"    )
+      MENUITEM_IMP( CM_SHELL_REVERSE,                  "Вывернуть оболочку",                 "Reverse a shell"       )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_BREAKSOLIDONPARTS,              "Разделить части",                    "Split parts"                          )
+      MENUITEM_IMP( CM_REMOVEINTERNALVOLUMES,          "Удалить внутренние объемы",          "Remove of internal body volumes"      )
+      MENUITEM_IMP( CM_CREATE_PARTSOLID,               "Выбрать тело из частей тела",        "Select a solid from parts of a solid" )
+      MENUITEM_IMP( CM_UNIFYOWNCOMPLANARFACES,         "Объединить компланарные грани",      "Unite complanar faces"                )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_SOLIDFINISH,                    "Достроить пропущенную операцию",     "Build an omitted operation"      )
+      MENUITEM_IMP( CM_TRANSLATESOLIDTOBASIS,          "Один шаг назад в построении",        "Step back in building"           )
+      MENUITEM_IMP( CM_BREAKSOLIDTOPARTS,              "Рассыпать в базовые объекты",        "Break up into base objects"      )
+      MENUITEM_IMP( CM_SOLIDENDMOVE,                   "Сдвинуть конец дерева",              "Move end of build log"           )
+      MENUITEM_IMP( CM_SOLIDENDCUT,                    "Оставить элементов в дереве",        "Keep elements in build log"      )
+      MENUITEM_IMP( CM_SOLIDCREATORDELETE,             "Удалить элемент дерева",             "Remove a component of build log" )
+      MENUITEM_IMP( CM_SOLIDCREATORSETLASTVERS,        "Установить последнюю версию элементу", "Set last version for component" )
+      MENUITEM_IMP( CM_SOLIDFILLETSSETLASTVERS,        "Установить последнюю версию скруглениям", "Set the latest version for fillets" )
+      MENUITEM_IMP( CM_LEAVE_LAST_ITEM_CREATORS_ONLY,  "Оставить только последние операции", "Leave the last operation only"   )
+      MENUITEM_IMP( CM_DELETE_ITEM_CREATORS,           "Удалить историю построения",         "Remove build log"                )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_BEND,                           "Согнуть",                            "Bend"                   )
+      MENUITEM_IMP( CM_UNBEND,                         "Разогнуть",                          "Unbend"                 )
+      MENUITEM_IMP( CM_BEND_ANY,                       "Согнуть нелистовое",                 "Bend non-sheet"         )
+      MENUITEM_IMP( CM_SIMPLIFY_SHEET_PATTERN,         "Упростить развёртку",                "Simplify flat pattern"  )
+      MENUITEM_IMP( CM_NORMALIZE_SHEET_HOLES,          "Нормализовать вырезы",               "Normalize holes"        )
+      MENUITEM_IMP( CM_BUILD_BENDS_3D_AXIS_LINES,      "Построить линии сгиба",              "Build bends axis lines" )
+      MENUITEM_IMP( CM_UNBENDALL,                      "Разогнуть все сгибы",                "Unbend all bends"       )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_PERFORM_SHELL_NAMING,           "Выполнить именование оболочки",      "Perform shell naming"   )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_ADD_ATTTRIBUTE,                 "Добавить атрибут",                   "Add attribute"     )
+      MENUITEM_IMP( CM_REMOVE_ATTTRIBUTES,             "Удалить атрибуты",                   "Remove attributes" )
+    }
+    
+    POPUP_IMP( "Поверхность", "Surface" )
+    {
+      MENUITEM_IMP( CM_GOSURFACETHROUGHPLANE,        "Спроецировать базовые точки",   "Project base points" )
+      MENUITEM_IMP( CM_GOSURFACETHROUGHPOINT,        "Пройти через точки",            "Pass through points" )
+      MENUITEM_IMP( CM_CONVERTNURBSSURFACEINTOOPEN,  "Развернуть замкнутый NURBS",    "Open a closed NURBS" )
+      MENUITEM_IMP( CM_CONVERTNURBSSURFACEINTOCLOSE, "Свернуть незамкнутый NURBS",    "Close an open NURBS" )
+      MENUITEM_IMP( CM_TRANSLATESURFACETOBASIS,      "Превратить в базовые объекты ", "Transform to base objects " )
+    }
+
+    POPUP_IMP( "Проволочный каркас", "Wire frame" )
+    {
+      MENUITEM_IMP( CM_REBUILD_WIRE_FRAME,           "Перестроить",                         "Rebuild"                 )
+      MENUITEM_IMP( CM_REBUILD_ALL_WIRE_FRAMES,      "Перестроить все проволочные каркасы", "Rebuild all wire frames" )
+    }
+
+    POPUP_IMP( "Кривую в пространстве", "Curve in space" )
+    {
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_CURVESETCLOSED,                       "Замкнуть/разомкнуть",           "Set closed/open" )
+      MENUITEM_IMP( CM_CURVEINVERSE,                         "Инвертировать направление",     "Inverse direction" )
+      MENUITEM_IMP( CM_DELETEMIDLEPART,                      "Удалить часть",                 "Remove a part" )
+      MENUITEM_IMP( CM_CREATEMIDLEPART,                      "Оставить часть",                "Keep a part" )
+      MENUITEM_IMP( CM_CREATEBREAKPARTS,                     "Разбить точкой",                "Split by point" )
+      MENUITEM_IMP( CM_CURVEXTEND,                           "Удлинить",                      "Extend" )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_MOVECURVEPOINT,                       "Сдвинуть NURBS точку",          "Move NURBS point" )
+      MENUITEM_IMP( CM_CURVEADDPOINT,                        "Вставить NURBS точку",          "Insert NURBS point" )
+      MENUITEM_IMP( CM_CONVERTNURBSINTOOPEN,                 "Развернуть замкнутый NURBS",    "Open a closed NURBS" )
+      MENUITEM_IMP( CM_CONVERTNURBSINTOCLOSE,                "Свернуть незамкнутый NURBS",    "Close an open NURBS" )
+      MENUITEM_IMP( CM_ADDNURBSTONURBS,                      "Объединить два NURBS",          "Add NURBS to NURBS" )
+      MENUITEM_IMP( CM_CURVEADDKNOTE,                        "Вставить NURBS узел",           "Insert a NURBS knot" )
+      MENUITEM_IMP( CM_CURVEREMOVEKNOTE,                     "Удалить NURBS узел",            "Remove a NURBS knot" )
+      MENUITEM_IMP( CM_REDUCE_NURBS_DEGREE,                  "Уменьшить порядок NURBS на 1",  "Decrease the degree of NURBS by 1" )
+      MENUITEM_IMP( CM_RAISE_NURBS_DEGREE,                   "Увеличить порядок NURBS на 1",  "Raise the degree of NURBS by 1" )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_ATTACHNURBSTOOBJECT,                  "Состыковать сплайн c объектом", "Join a spline with an object" )
+      MENUITEM_IMP( CM_CONJUGATE_CONTOUR_SEGMENTS,           "Сопрячь сегменты контура",      "Conjugate the contour segments" )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_TRANSLATECURVE3DTOCURVE,              "Преобразовать в плоскую",       "Transform to the planar one" )
+      MENUITEM_IMP( CM_TRANSLATE_SPACECURVE_TO_SURFACECURVE, "Преобразовать в поверхностную", "Transform to the curve-on-surface form" )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_TRANSLATECURVETOBASIS,                "Превратить в базовые объекты",  "Transform to the base objects" )
+    }
+    POPUP_IMP( "Точку в пространстве", "Point in space" )
+    {
+      MENUITEM_IMP( CM_MOVEPOINTALONGLINE,           "Сдвинуть вдоль кривой",             "Move along a curve"     )
+      MENUITEM_IMP( CM_MERGE_POINTS,                 "Объединить точки",                  "Merge points"     )
+    }
+    POPUP_IMP( "Полигональный объект", "Polygonal object" )
+    {
+      MENUITEM_IMP( CM_REBUILD_MESH,               "Перестроить",                          "Rebuild" )
+      MENUITEM_IMP( CM_TRANSLATEMESHTOBASIS,       "Один шаг назад в построении",          "Step back in building" )
+      MENUITEM_IMP( CM_MESH_REVERSE,               "Вывернуть",                            "Reverse" )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_SIMPLIFY_MESH_TRI_COUNT, "Упростить триангуляцию по количеству треугольников", "Simplify mesh up to triangles count" )
+      MENUITEM_IMP( CM_SIMPLIFY_MESH_TOLERANCE, "Упростить триангуляцию по точности", "Simplify mesh with tolerance" )
+      MENUITEM_IMP( CM_ALIGN_MESH,               "Совместить с другим объектом",          "Align with another object" )
+      MENUITEM_IMP( CM_MESH_TO_GRIDS,              "Разделить триангуляции",               "Split on grids" )
+      MENUITEM_IMP( CM_KEEP_ONLY_GRIDS,            "Оставить только пластины",             "Keep only grids" )
+      MENUITEM_IMP( CM_KEEP_ONLY_POLYS,            "Оставить только ломаные",              "Keep only polys" )
+      MENUITEM_IMP( CM_KEEP_ONLY_APEXS,            "Оставить только апексы",               "Keep only apexs" )
+      MENUITEM_IMP( CM_REPAIRINCONSISTENTMESH,     "Исправить несогласованную ориентацию", "Repair inconsistent orientation" )
+    }
+    POPUP_IMP( "Полигональная сетка", "Polymesh" )
+    {
+      MENUITEM_IMP( CM_REMESH_POLYMESH, "Ремешировать", "Remesh" )
+      MENUITEM_IMP( CM_SMOOTH_POLYMESH, "Сгладить", "Smooth" )
+      MENUITEM_IMP( CM_CALC_NORMALS_POLYMESH, "Рассчитать нормали", "Calculate normals" )
+      MENUITEM_IMP( CM_CUT_POLYMESH_BY_CURVES, "Обрезать кривыми", "Cut by curves" )
+    }
+    POPUP_IMP( "Объект модели", "Model object" )
+    {
+      MENUITEM_IMP( CM_REBUILD_ITEM,                 "Перестроить",                       "Rebuild"                       )
+      MENUITEM_IMP( CM_DELETE_ITEM_CREATORS,         "Удалить историю построения",        "Remove build log"             )
+      MENUITEM_IMP( CM_EDITPROPERTY,                 "Изменить параметры",                "Change parameters"             )
+      MENUITEM_IMP( CM_ADDBASISPOINTS,               "Дать базовые точки",                "Specify the base points"       )
+      MENUITEM_IMP( CM_TRANSLATETOBASIS,             "Превратить в базовые объекты",      "Convert to the base object"    )
+      MENUITEM_IMP( CM_TRANSLATETOINGOT,             "Превратить в слиток",               "Convert to the ingot"          )
+      MENUITEM_IMP( CM_MESH_TO_BREP,                 "Преобразовать полигоны в тело",     "Convert a mesh to the solid"   )
+      MENUITEM_IMP( CM_MESH_TO_BREP_SURF_RECON_AUTO, "Преобразовать в тело c распознаванием поверхностей", "Convert to the solid with surface reconstruction" )
+      MENUITEM_IMP( CM_CONVERT_TO_MESH,              "Преобразовать объект в полигоны",   "Convert an object to the mesh" )
+      MENUITEM_IMP( CM_SIMPLIFY_MESH,                "Упростить полигоны",                "Simplify a mesh"               )
+      MENUITEM_IMP( CM_CONVERT_MESH_TO_INSTANCE,     "Заменить повторяющиеся меши на вставки", "Convert repetitive meshes to instances" )
+    }
+    POPUP_IMP( "Резьбу", "Thread" )
+    {
+      MENUITEM_IMP( CM_MODTHREAD_ISMATEDTHREADS,     "Сопрягаются ли резьбы?",             "Are the threads mated?"     )
+      MENUITEM_IMP( CM_MODTHREAD_ISBODYTHREAD,       "Принадлежит ли резьба телу?",        "Does a thread belong to the solid?" )
+      MENUITEM_IMP( CM_MODTHREAD_ADAPTTOBODY,        "Адаптировать резьбу к телу",         "Adapt a thread to the solid" )
+    }
+    MENUITEM SEPARATOR
+    POPUP_IMP( "Кривую на плоскости", "Curve on a plane" )
+    {
+      MENUITEM_IMP( CM_SPLINESETCLOSED,            "Замкнуть/разомкнуть",              "Set closed/open" )
+      MENUITEM_IMP( CM_SPLINEINVERSE,              "Инвертировать направление",        "Inverse direction" )
+      MENUITEM_IMP( CM_DELETEPART,                 "Удалить часть",                    "Delete a part" )
+      MENUITEM_IMP( CM_DELETEPARTP1P2,             "Удалить между точками",            "Delete between points" )
+      MENUITEM_IMP( CM_NEWTRIMMEDCURVE,            "Вырезать",                         "Cut out" )
+      MENUITEM_IMP( CM_BREAKCURVE,                 "Разбить точкой",                   "Split by a point" )
+      MENUITEM_IMP( CM_TRUNCATECURVES,             "Разбить точками пересечения",      "Truncate by intersection points" )
+      MENUITEM_IMP( CM_CURVEXTEND,                 "Удлинить",                         "Extend" )
+      MENUITEM_IMP( CM_FILLETCURVES,               "Скруглить кривые",                 "Fillet curves" )
+      MENUITEM_IMP( CM_CHAMFERCURVES,              "Фаска на кривых",                  "Chamfer on curves" )
+      MENUITEM_IMP( CM_SPLINESET_WEIGHTS,          "Вес точки сплайна",                "Weight of a spline point" )
+      MENUITEM_IMP( CM_SPLINENEW_POINT,            "Ввести точку в сплайн",            "Insert a point to a spline" )
+      MENUITEM_IMP( CM_SPLINETANGENT,              "Касательная к сплайну",            "Tangent spline" )
+      MENUITEM_IMP( CM_SPLINETRIMM,                "Усечь сплайн",                     "Trim a spline" )
+      MENUITEM_IMP( CM_SPLINECHANGEPOINT,          "Заменить точку сплайна",           "Replace a point of spline" )
+      MENUITEM_IMP( CM_SETDEGREE,                  "Изменить порядок",                 "Change the order" )
+      MENUITEM_IMP( CM_SPLINEINSERTKNOT,           "Вставить узел в сплайн",           "Insert a knot to spline" )
+      MENUITEM_IMP( CM_APPARCCURVE,                "Аппроксимировать дугами",          "Approximate with arcs" )
+      MENUITEM_IMP( CM_TRANSLATECURVETOCURVE3D,    "Преобразовать в пространственную", "Transform to a spatial one" )
+      MENUITEM_IMP( CM_TRANSLATECURVETOCONTOURON,  "Преобразовать в плоский контур",   "Transform to a planar contour" )
+      MENUITEM_IMP( CM_CONVERTPLANENURBSINTOOPEN,  "Развернуть замкнутый NURBS",       "Open a closed NURBS" )
+      MENUITEM_IMP( CM_CONVERTPLANENURBSINTOCLOSE, "Свернуть незамкнутый NURBS",       "Close an open NURBS" )
+      MENUITEM_IMP( CM_NORMALIZEOBJECT,            "Нормализовать",                    "Normalize" )
+    }
+
+    POPUP_IMP( "Контур на плоскости", "Contour on a plane" )
+    {
+      MENUITEM_IMP( CM_CONTOURSENSE,                "Установить направление",         "Set direction" )
+      MENUITEM_IMP( CM_INSERTPOINTINCONTOUR,        "Вставить точечную кривую",       "Insert point curve" )
+      MENUITEM_IMP( CM_TRANSLATECONTOURTOCONTOURON, "Создать пространственную копию", "Create a spatial copy" )
+      MENUITEM_IMP( CM_ADDINVISIBLEPART,            "Добавить невидимый участок в контур с разрывами", "Add an invisible part to a contour with breaks" )
+      MENUITEM_IMP( CM_ELIMINATE_CONTOUR_GAPS,      "Устранить разрывы в контуре",     "Eliminate contour gaps" )
+      MENUITEM_IMP( CM_DISASSEMBLY,                 "Разрушить",                       "Destroy" )
+    }
+
+    POPUP_IMP( "Мультилинию на плоскости", "Multiline on a plane" )
+    {
+      MENUITEM_IMP( CM_REPLACEMLTLINESBASISCURVE,    "Заменить базовую кривую мультилинии",                            "Replace the base curve of a multiline" )
+      MENUITEM_IMP( CM_INSERTMLTLINESVERTEX,         "Вставить вершину в мультилинию",                                 "Insert a vertex into a multiline" )
+      MENUITEM_IMP( CM_REMOVEMLTLINESVERTEX,         "Удалить вершину мультилинии",                                    "Remove a vertex of a multiline" )
+      MENUITEM_IMP( CM_SETMLTLINESHOTPOINT,          "Сместить hot-точку базовой кривой мультилинии",                  "Move a hot-point of a multiline base curve" )
+      MENUITEM_IMP( CM_DELMLTLINESHOTPOINT,          "Удалить hot-точку базовой кривой мультилинии",                   "Delete a hot-point of a multiline base curve" )
+      MENUITEM_IMP( CM_SETMLTLINESVERTSMOOTHJOINT,   "Выставить флаг гладкий стык в вершине мультилинии",              "Set flag of smooth joint at a vertex of multiline" )
+      MENUITEM_IMP( CM_SETMLTLINESVERTTRACINGTYPE,   "Выставить тип обхода угла в вершине мультилинии",                "Set type of corner tracing at a vertex of multiline" )
+      MENUITEM_IMP( CM_SETMLTLINESVERTSPECFILLETRAD, "Выставить радиус специального скругления в вершине мультилинии", "Set radius of a special fillet at a vertex of multiline" )
+      MENUITEM_IMP( CM_SETMLTLINESVERTTIPTYPE,       "Выставить тип законцовки в вершине мультилинии",                 "Set type of a tip at a vertex of multiline" )
+      MENUITEM_IMP( CM_SETMLTLINESVERTTIPDIR,        "Выставить направление законцовки в вершине мультилинии",         "Set direction of a tip at a vertex of multiline" )
+      MENUITEM_IMP( CM_SETMLTLINESRADIUS,            "Выставить радиус эквидистанты мультилинии",                      "Set radius of a multiline's offset" )
+      MENUITEM_IMP( CM_CHANGEMLTLINESRADIUS,         "Изменить радиус эквидистанты мультилинии",                       "Change radius of multiline's offset" )
+      MENUITEM_IMP( CM_ADDMLTLINESRADIUS,            "Добавить радиус эквидистанты мультилинии",                       "Add radius of multiline's offset" )
+      MENUITEM_IMP( CM_REMOVEMLTLINESRADIUS,         "Удалить радиус эквидистанты мультилинии",                        "Remove radius of multiline's offset" )
+      MENUITEM_IMP( CM_SETMLTLINESBEGTIPTYPE,        "Выставить тип законцовки в начале мультилинии",                  "Set type of a tip at the beginning of multiline" )
+      MENUITEM_IMP( CM_SETMLTLINESBEGTIPPARAM,       "Выставить параметр законцовки в начале мультилинии",             "Set parameter of a tip at the beginning of multiline" )
+      MENUITEM_IMP( CM_SETMLTLINESENDTIPTYPE,        "Выставить тип законцовки в конце мультилинии",                   "Set type of a tip at the end of multiline" )
+      MENUITEM_IMP( CM_SETMLTLINESENDTIPPARAM,       "Выставить параметр законцовки в конце мультилинии",              "Set parameter of a tip at the end of multiline" )
+      MENUITEM_IMP( CM_SETMLTLINESPROCESSCLOSED,     "Выставить использование замкнутости",                            "Set flag of using the closedness" )
+      MENUITEM_IMP( CM_FILLETMLTLINESBASISCURVE,     "Построить скругление базовой кривой мультилинии",                "Create fillet of multiline base curve" )
+      MENUITEM_IMP( CM_CHAMFERMLTLINESBASISCURVE,    "Построить фаску базовой кривой мультилинии",                     "Create chamfer of multiline base curve" )
+      MENUITEM_IMP( CM_BREAKMLTLINE,                 "Разбить мультилинию на две части",                               "Split multiline into two parts" )
+      MENUITEM_IMP( CM_BREAKMLTLINENPARTS,           "Разбить мультилинию на N частей",                                "Split multiline into N parts" )
+      MENUITEM_IMP( CM_DELMLTLINESLASTSEG,           "Удалить последний сегмент мультилинии",                          "Remove the last segment of multiline" )
+      MENUITEM_IMP( CM_DELETEPARTMLTLINEP1P2,        "Удалить между точками",                                          "Remove between points" )
+    }
+
+    MENUITEM SEPARATOR
+    POPUP_IMP( "Произвольный oбъект", "Arbitrary object" )
+    {
+      MENUITEM_IMP( CM_MOVEOBJECT,        "Переместить",                  "Move" )
+      MENUITEM_IMP( CM_PLANEROTATEOBJECT, "Повернуть в плоскости экрана", "Rotate on the screen plane" )
+      MENUITEM_IMP( CM_LINEROTATEOBJECT,  "Повернуть вокруг линии",       "Rotate about a line" )
+      MENUITEM_IMP( CM_SCALEOBJECT,       "Масштабировать",               "Scale" )
+      MENUITEM_IMP( CM_TRANSFORMOBJECT,   "Перевести в локальную систему","Transform by local system" )
+      MENUITEM_IMP( CM_DELETEOBJECT,      "Удалить",                      "Delete" )
+    }
+    POPUP_IMP( "Выделенные oбъекты", "Selected objects" )
+    {
+      MENUITEM_IMP( CM_EDITMOVE,          "Переместить",                  "Move" )
+      MENUITEM_IMP( CM_EDITPLANEROTATE,   "Повернуть в плоскости экрана", "Rotate on the screen plane" )
+      MENUITEM_IMP( CM_EDITLINEROTATE,    "Повернуть вокруг линии",       "Rotate about a line" )
+      MENUITEM_IMP( CM_EDITSCALESELECTED, "Масштабировать",               "Scale" )
+      MENUITEM_IMP( CM_DELETESELECTED,    "Удалить",                      "Delete" )
+    }
+    POPUP_IMP( "Объекты на плоскости", "Objects on the plane" )
+    {
+      MENUITEM_IMP( CM_MOVECPLANE,              "Переместить в собственной плоскости", "Move in the own plane" )
+      MENUITEM_IMP( CM_EDITOWNPLANEROTATE,      "Повернуть в собственной плоскости",   "Rotate in the own plane" )
+      MENUITEM_IMP( CM_ROTATEPLANEINVIEW,       "Повернуть в плоскость окна",          "Rotate to the plane of the window" )
+      MENUITEM_IMP( CM_TRANSFORMPLANEOBJECT,    "Перевести в локальную плоскость",     "Transform by local plane" )
+      MENUITEM_IMP( CM_DELETECONSTRUCTIVEPLANE, "Удалить",                             "Delete" )
+    }
+  }
+
+  POPUP_IMP( "Выделить", "Select" )
+  {
+    POPUP_IMP( "Все объекты", "All objects" )
+    {
+      MENUITEM_IMP( CM_EDITSELECTALL,       "Да",                       "Select all"   )
+      MENUITEM_IMP( CM_EDITUNSELECTALL,     "Нет",                      "Unselect all" )
+      MENUITEM_IMP( CM_EDITREVERSSELECTALL, "Инвертировать",            "Inverse"      )
+      MENUITEM_IMP( CM_SELECTBYCPLANE,      "Конструктивной плоскости", "Of constructive plane" )
+    }
+    POPUP_IMP( "Тела", "Solids" )
+    {
+      MENUITEM_IMP( CM_SELECT_ALL_SOLIDS,      "Все",             "All" )
+      MENUITEM_IMP( CM_SELECT_CLOSED_SOLIDS,   "Все замкнутые",   "All closed" )
+      MENUITEM_IMP( CM_SELECT_UNCLOSED_SOLIDS, "Все незамкнутые", "All open" )
+    }
+    POPUP_IMP( "Поверхности", "Surfaces" )
+    {
+      MENUITEM_IMP( CM_SELECTALLSURFACES,         "Все",               "All" )
+      MENUITEM_IMP( CM_SELECTPLANE,               "Плоскости",         "Planes" )
+      MENUITEM_IMP( CM_SELECTELEMENTARYSURFACE,   "Элементарные",      "Elementary" )
+      MENUITEM_IMP( CM_SELECTSWEPTSURFACE,        "Движения",          "Swept" )
+      MENUITEM_IMP( CM_SELECTPOLYSURFACE,         "Сплайновые",        "Spline" )
+      MENUITEM_IMP( CM_SELECTOFFSETSURFACE,       "Эквидистантные",    "Offset" )
+      MENUITEM_IMP( CM_SELECTCURVEBOUNDEDSURFACE, "Усеченные кривыми", "Truncated by curves" )
+    }
+    POPUP_IMP( "Кривые", "Curves" )
+    {
+      MENUITEM_IMP( CM_SELECTALLCURVES,         "Все",                   "All" )
+      MENUITEM_IMP( CM_SELECTLINE,              "Прямые",                "Lines" )
+      MENUITEM_IMP( CM_SELECTPOLYCURVE,         "Сплайны",               "Splines" )
+      MENUITEM_IMP( CM_SELECTINTERSECTIONCURVE, "Пересечения",           "Intersections" )
+      MENUITEM_IMP( CM_SELECTCONTOURS2D,        "Кривые двумерные",      "Two-dimensional curves" )
+      MENUITEM_IMP( CM_SELECTCONTOURS3D,        "Кривые трехмерные",     "Three-dimensional curves" )
+      MENUITEM_IMP( CM_SELECTCONTOURSONSURFACE, "Кривые на поверхности", "Curves on a surface" )
+    }
+    POPUP_IMP( "Точки", "Points" )
+    {
+      MENUITEM_IMP( CM_SELECTALLPOINTS, "Все", "All" )
+    }
+  }
+
+  POPUP_IMP( "&Выполнить", "Perform" )
+  {
+    MENUITEM_IMP( CM_CUTMODELOBJECTS, "Резку объектов",       "Cutting of objects"   )
+    MENUITEM_IMP( CM_EDITREDRAW,      "Перерисовку объектов", "Redrawing of objects" )
+    MENUITEM SEPARATOR
+    POPUP_IMP( "Построение", "Construction" )
+    {
+      POPUP_IMP( "Габарита", "Bounding box" )
+      {
+        MENUITEM_IMP( CM_CURVEGABARIT,   "Кривой",        "Curve"        )
+        MENUITEM_IMP( CM_SURFACEGABARIT, "Поверхности",   "Surface"      )
+        MENUITEM_IMP( CM_FACEGABARIT,    "Грани тела",    "Solid's face" )
+        MENUITEM_IMP( CM_SOLIDGABARIT,   "Твердого тела", "Solid"        )
+      }
+      POPUP_IMP( "Габарита в локальной системе координат", "Bounding box in the local coordinate system" )
+      {
+        MENUITEM_IMP( CM_LOCALGABARIT_CURVE2D,   "2D Кривой",     "2D curve"      )
+        MENUITEM_IMP( CM_LOCALGABARIT_CURVE3D,   "3D Кривой",     "3D curve"      )
+        MENUITEM_IMP( CM_LOCALGABARIT_SURFACE,   "Поверхности",   "Surface"       )
+        MENUITEM_IMP( CM_LOCALGABARIT_EDGE,      "Ребра тела",    "Solid's edge"  )
+        MENUITEM_IMP( CM_LOCALGABARIT_FACE,      "Грани тела",    "Solid's face"  )
+        MENUITEM_IMP( CM_LOCALGABARIT_SOLID,     "Твердого тела", "Solid"         )
+      }
+      POPUP_IMP( "Вспомогательного объекта", "An auxiliary object" )
+      {
+        MENUITEM_IMP( CM_FLOOD_FILL_VOLUME, "Объёма заполненного сосуда", "The volume of flood fill" )
+      }
+      POPUP_IMP( "Характерных точек и векторов", "Control points and vectors" )
+      {
+        MENUITEM_IMP( CM_SURF_NORMALS, "Нормалей поверхности", "Surface normals" )
+        MENUITEM_IMP( CM_FACE_NORMALS, "Нормалей грани",       "Face normals"    )
+        MENUITEM_IMP( CM_MESH_NORMALS, "Нормалей сетки",       "Mesh normals" )
+      }
+      POPUP_IMP( "Очерка", "Silhouette" )
+      {
+        MENUITEM_IMP( CM_SURFACEHIDE, "Поверхности",   "Surface" )
+        MENUITEM_IMP( CM_FACEHIDE,    "Грани",         "Face"    )
+        MENUITEM_IMP( CM_SOLIDHIDE,   "Твердого тела", "Solid"   )
+      }
+      POPUP_IMP( "Триангуляции", "Triangulation" )
+      {
+        MENUITEM_IMP( CM_TRIANGULAREREGION,      "Региона",       "Region"       )
+        MENUITEM_IMP( CM_TRIANGULATESURFACE,     "Поверхности",   "Surface"      )
+        MENUITEM_IMP( CM_TRIANGULATEFACE,        "Грани тела",    "Solid's face" )
+        MENUITEM_IMP( CM_TRIANGULATESOLID,       "Твердого тела", "Solid"        )
+        MENUITEM_IMP( CM_TRIANGULATESOLIDS,      "Сборки тел",    "Assembly"     )
+        MENUITEM_IMP( CM_TRIANGULATEPOINTCLOUD,  "Облака точек",  "Point Cloud"     )
+      }
+      POPUP_IMP( "Упрощения триангуляции", "Simplified triangulation" )
+      {
+        MENUITEM_IMP( CM_SIMPLIFY_TRGN_CONVEX_HULL, "Выпуклой триангуляции твердого тела", "Convex hull of a solid" )
+      }
+      POPUP_IMP( "Развертки", "Unfold" )
+      {
+        MENUITEM_IMP( CM_CURVEMAP,             "Поверхностной кривой",            "Curve on a surface"         )
+        MENUITEM_IMP( CM_CURVESMAP,            "Множества кривых на поверхности", "Set of curves on a surface" )
+        MENUITEM_IMP( CM_SURFACEMAP,           "Поверхности",                     "Surface"                    )
+        MENUITEM_IMP( CM_SOLIDFACEMAP,         "Грани тела",                      "Solid's face"               )
+        MENUITEM_IMP( CM_SOLIDMAP,             "Граней твердого тела",            "Solid's faces"              )
+        MENUITEM_IMP( CM_PARAMTRIANGULATEFACE, "Триангуляции грани тела",         "Solid's triangulation"      )
+      }
+      POPUP_IMP( "Характеристических линий", "Characteristic lines" )
+      {
+        MENUITEM_IMP( CM_CURVETESTA,   "Сплайновой кривой",      "Spline curve"   )
+        MENUITEM_IMP( CM_SURFACETESTA, "Сплайновой поверхности", "Spline surface" )
+      }
+      POPUP_IMP( "Каркаса объекта", "Frame of object" )
+      {
+        MENUITEM_IMP( CM_MAKESPACEWIREFRAME,     "Пространственного",    "Spatial"              )
+        MENUITEM_IMP( CM_MAKEPLANEWIREFRAME,     "Плоского",             "Planar"               )
+        MENUITEM_IMP( CM_MAKEWIREFRAMEONPLANE,   "На плоскости",         "On plane"             )
+        MENUITEM_IMP( CM_MAKETRIANGLEPOINTFRAME, "Точек триангуляции",   "Triangulation points" )
+        MENUITEM_IMP( CM_MAKETRIANGLEWIREFRAME,  "Линий триангуляции",   "Triangulation lines"  )
+        MENUITEM_IMP( CM_MAKETRIANGLEPLANE,      "Пластин триангуляции", "Triangulation plates" )
+      }
+      POPUP_IMP( "Графика", "Plot" )
+      {
+        MENUITEM_IMP( CM_CURVATUREPROFILE,  "Эпюра кривизны кривой", "Curve curvature profile" )
+        MENUITEM_IMP( CM_CURVECURVATURE,    "Кривизны кривой",       "Curve curvature" )
+        MENUITEM_IMP( CM_CURVETORSION,      "Кручения кривой",       "Curve torsion"   )
+        MENUITEM_IMP( CM_DERIVATIVEPROFILE, "Эпюра производных поверхности", "The surface derivative profile" )
+      }
+    }
+    POPUP_IMP( "Расчет", "Calculation" )
+    {
+      POPUP_IMP( "Инерционных характеристик", "Inertial properties" )
+      {
+        MENUITEM_IMP( CM_GETSOLIDMASSINERTIA,        "Тел",     "Solids" )
+        MENUITEM_IMP( CM_GETCONTOURAREA,             "Сечения", "Section" )
+        MENUITEM_IMP( CM_GETMESHINERTIA,             "Полигональных объектов",  "Polygonal objects" )
+      }
+
+      POPUP_IMP( "Детектор столкновений", "Collision detection" )
+      {
+        MENUITEM_IMP( CM_COLLISION_CONSTRUCT_BVT_NODES, "Дерева объемов",         "Hierarchical volume tree" )
+        MENUITEM_IMP( CM_COLLISION_DISTANCE_QUERY,      "Расстояния",             "Distance query" )
+        MENUITEM_IMP( CM_COLLISION_INTERFERENCE_SOLIDS, "Cтолкновений для тел",   "Query for solids" )
+        MENUITEM_IMP( CM_COLLISION_INTERFERENCE_MESHES, "Столкновений для сеток", "Query for meshes" )
+
+        MENUITEM_IMP( CM_CROSS_BOOLEAN,                 "Пересечения посредством булевой операции",  "Intersection via boolean operation" )
+        MENUITEM_IMP( CM_FIND_TOUCHED_FACES,            "Cоприкасающихся граней",                    "Touching faces" )
+        MENUITEM_IMP( CM_SPLIT_TOUCHED_FACES,           "Разбиения контактирующих граней тел",       "Splitting contacting faces of solids" )
+        MENUITEM_IMP( CM_MERGE_SOLIDS,                  "Объединения тел с контактирующими гранями", "Merging bodies with contacting faces" )
+      }
+
+      MENUITEM_IMP( CM_GETEDGEFACESANGLE,            "Угла между гранями ребра",                    "Angle between faces incident to the edge" )
+      MENUITEM_IMP( CM_GETEDGEEDGEANGLE,             "Угла между двумя ребрами",                    "Angle between two edges" )
+      MENUITEM_IMP( CM_POINTLOCATION_RELATIVETOBODY, "Положения точки относительно тела",           "Point location relative to a body" )
+
+      MENUITEM SEPARATOR
+      POPUP_IMP( "Расстояния", "Distance" )
+      {
+        MENUITEM_IMP( CM_POINTDISTANCETOPOINT,         "Расстояния от точки до объекта", "Distance from a point to the object" )
+        MENUITEM_IMP( CM_GETDISTANCETOPOINT,           "Расстояния от вершины до тела",  "Distance from a vertex to the solid" )
+        MENUITEM_IMP( CM_GEOMITEMS_MINDISTANCE,        "Мин. расстояния между геом. объектами",       "Min. distance between geometrical objects" )
+        MENUITEM_IMP( CM_TOPOITEMS_MINDISTANCE,        "Мин. расстояния между топ. объектами",        "Min. distance between topological objects" )
+        MENUITEM_IMP( CM_SOLIDS_MINDISTANCE,           "Мин. расстояния между телами",                "Min. distance between solids" )
+        MENUITEM_IMP( CM_SURFAXESDISTANCE,             "Расстояния между осями поверхностей",         "Distance between axes of surfaces" )
+        MENUITEM_IMP( CM_GEOMITEMS_MAXDISTANCE,        "Макс. расстояния между геом. объектами",      "Max. distance between geometrical objects" )
+        MENUITEM_IMP( CM_TOPOITEMS_MAXDISTANCE,        "Макс. расстояния между топ. объектами",       "Max. distance between topological objects" )
+        MENUITEM_IMP( CM_GRIDDED_SURF_MINMAXDISTANCES, "Расстояния между поверхностями по сетке",     "Distance between surfaces by the grid" )
+      }
+      MENUITEM SEPARATOR
+      POPUP_IMP( "Кривизны", "Curvature" )
+      {
+        MENUITEM_IMP( CM_GETCURVERADIUS,               "Kривой или ребра",                                "Curve or edge" )
+        MENUITEM_IMP( CM_SURF_MAX_MIN_CURVATURES,      "Максимальные по модулю кривизны поверхности",     "Maximum modulus of surface curvature" )
+        MENUITEM_IMP( CM_FACES_MAX_MIN_CURVATURES,     "Максимальные по модулю кривизны оболочки",        "Maximum modulus of shell curvature" )
+        MENUITEM_IMP( CM_CURVE_MAX_MIN_CURVATURES,     "Максимальные по модулю кривизны кривой",          "Maximum modulus of curve curvature" )
+      }
+      POPUP_IMP( "Длины", "Length" )
+      {
+        MENUITEM_IMP( CM_GETCURVELENGTH,                 "Кривой",                                    "Curve" )
+        MENUITEM_IMP( CM_GETWIREFRAMELENGTH,             "Каркаса",                                   "Wire frame" )
+      }
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_GETFACECENTRE,                  "Площадь поверхности тела",                        "Surface area of solid" )
+      MENUITEM SEPARATOR
+       POPUP_IMP( "Количество уникальных объектов", "Number of unique objects" )
+      {
+        MENUITEM_IMP( CM_NUMBER_UNIQUE_SURFACE, "Поверхности", "Surfaces" )
+      }
+    }
+
+    POPUP_IMP( "Действие", "Action" )
+    {
+      MENUITEM_IMP( CM_SET_SOLID_LAST_VERSION,         "Выставить последнюю версию",                      "Set the last version" )
+      MENUITEM_IMP( CM_DELETEINVISIBLE,                "Удалить все невидимые объекты",                   "Delete all invisible objects"  )
+      MENUITEM_IMP( CM_DECOMPOSE_ALL_ASSEMBLIES,       "Разрушить все сборки и фреймы",                   "Decompose all assemblies and frames"      )
+      MENUITEM_IMP( CM_REMOVE_COLOR_AND_VISUAL_ATTRIBUTES, "Удалить визуальные свойства",                 "Remove visual properties"      )
+    }
+    POPUP_IMP( "Диагностирование", "Diagnostics" )
+    {
+      MENUITEM_IMP( CM_CHECK_SHELL_GEOMETRY,           "Проверить геометрию оболочки",                    "Check geometry of a shell" )
+      MENUITEM_IMP( CM_CHECK_ALL_SHELLS_GEOMETRY,      "Проверить геометрию всех оболочек",               "Check geometry of all shells")
+      MENUITEM_IMP( CM_CHECK_SHELL_NAMES,              "Проверить именование оболочки",                   "Check names of a shell" )
+      MENUITEM_IMP( CM_CHECK_POINTFRAME_NAMES,         "Проверить именование точечного каркаса",          "Check names of a point frame" )
+      MENUITEM_IMP( CM_CHECK_WIREFRAME_NAMES,          "Проверить именование проволочного каркаса",       "Check names of a wire frame" )
+      MENUITEM_IMP( CM_CHECK_SHELLS_PTRS_COINCIDENCE,  "Проверить совпадение указателей в оболочках",     "Check shells pointers coincidence")
+      MENUITEM_IMP( CM_CHECK_SHELL_MAIN_NAMES,         "Проверить главные имена вершин и рёбер",          "Check main names of the edges and vertices")
+      MENUITEM_IMP( CM_CHECK_SHELL_SELFINT,            "Проверить оболочку на самопересечение",           "Check shell for self-intersection" )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_CHECK_MESH_CLOSENESS,           "Проверить замкнутость полигонального объекта",    "Check closeness of a polygonal object" )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_CHECK_SURFACE_DERIVES,          "Проверить производные поверхности",               "Check derives of a surface" )
+      MENUITEM_IMP( CM_CHECKIDENTICALBASESURFACES,     "Проверить поверхности-подложки",                  "Check the base surfaces" )
+      MENUITEM_IMP( CM_CHECK_SOLIDS_INTERSECT,         "Проверка тел на пересечение",                     "Check bodies for intersection" )
+      MENUITEM_IMP( CM_CHECK_CONVEX_HULL_INTERSECT,    "Проверить абрис триангуляций тел на пересечение", "Check convex hulls for intersection" )
+      MENUITEM_IMP( CM_CHECK_FACE_TRIANGULATION,       "Проверить триангуляцию грани",                    "Check triangulation of a face" )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_FIND_OVERLAPPING_SIMILAR_FACES, "Найти подобные грани с наложением",               "Find similar faces with overlapping" )
+      MENUITEM_IMP( CM_FIND_FACES_EDGES_CARRIERS,      "Найти грани - потенциальные носители ребер",      "Find faces - potential owners of edges" )
+      MENUITEM_IMP( CM_FIND_NEAREST_SOLID,             "Найти ближайшее тело",                            "Find nearest solid" )
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_ADD_VERTEXEDGES_AS_CURVES,      "Создать кривые по ребрам вершины",               "Create curves by vertex edges" )
+      MENUITEM_IMP( CM_ADD_SOLIDEDGES_AS_CURVES,       "Создать кривые по всем ребрам",                  "Create curves by all edges" )
+      MENUITEM_IMP( CM_ADD_SOLIDVERTS_AS_POINTS,       "Создать точки по всем вершинам",                 "Create points by all vertices" )
+      // KYA M15 Debug functions
+      //MENUITEM_IMP( CM_RECOGNITIONSPIRALSURFACES,      "Создать спиральные поверхности по сплайновым",   "Create spiral surfaces by spline surfaces" )
+      //MENUITEM SEPARATOR
+      //MENUITEM_IMP( CM_CHECK_CURVE2D_SPEED,            "Скорости работы кривой 2D",   "Calculation speed of 2D curve" )
+      //MENUITEM_IMP( CM_CHECK_CURVE3D_SPEED,            "Скорости работы кривой 3D",   "Calculation speed of 3D curve" )
+      //MENUITEM_IMP( CM_CHECK_SURFACE_SPEED,            "Скорости работы поверхности", "Speed of surface" )
+      //
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_SHOW_CURVE_DIRECTION,         "Показать направление кривой",             "Show curve direction" )
+      MENUITEM_IMP( CM_SHOW_SURFACE_DIRECTIONS,      "Показать направления поверхности",        "Show surface directions" )
+      MENUITEM_IMP( CM_SHOW_DEGENERATE_TRIANGLES,    "Показать вырожденные треугольники сетки", "Show the degenerate triangles of the mesh" )
+      MENUITEM_IMP( CM_CREATE_SURFACE_OPER_TESS,     "Показать операц.разбивку поверхности",    "Show operational surface tesselation" )
+      MENUITEM_IMP( CM_CHECK_CURVES_TANGENT_MATING,  "Проверить касание кривых",                "Check curve for tangency" )
+      MENUITEM_IMP( CM_CHECK_CURVE_POLYGON_ACCURACY, "Проверить точность полигона кривой",      "Check accuracy of curve polygon" )
+      MENUITEM_IMP( CM_CHECK_CURVE2D_SELFINT,        "Проверить кривую 2D на самопересечение",  "Check 2D curve for self-intersection" )
+      MENUITEM_IMP( CM_CHECK_CURVE3D_SELFINT,        "Проверить кривую 3D на самопересечение",  "Check 3D curve for self-intersection" )
+      MENUITEM_IMP( CM_CHECK_SURFACE_SELFINT,        "Проверить поверхность на самопересечение", "Check surface for self-intersection" )
+      MENUITEM_IMP( CM_CHECK_SKETCH,                 "Проверить эскиз",                         "Check sketch" )
+    }
+    POPUP_IMP( "Ремонт", "Repair" )
+    {
+      MENUITEM_IMP( CM_RESET_SURFACE_BBOX,           "Cбросить габариты поверхностей",            "Reset bounding boxes of surfaces" )
+      MENUITEM_IMP( CM_RESET_INTCURVE_APPROX,        "Cбросить аппроксимацию кривой пересечения", "Reset approximation of intersection curve" )
+      MENUITEM_IMP( CM_RESET_CURVES_TEMPDATA,        "Cбросить все временные данные кривых",      "Reset all temporary data of curves" )
+      MENUITEM_IMP( CM_CHANGE_SHELL_CLOSEDNESS,      "Изменить флаг замкнутости оболочки",        "Change closedness of a shell" )
+      MENUITEM_IMP( CM_REMOVE_INNER_LOOP,            "Удалить внутренний цикл грани",             "Remove inner face's loop" )
+      MENUITEM_IMP( CM_REPAIR_INEXACT_EDGES,         "Починить неточные ребра",                   "Repair inexact edges" )
+      MENUITEM_IMP( CM_REPAIR_VERTICES,              "Починить проблемные вершины",               "Repair problem vertices" )
+      MENUITEM_IMP( CM_SOLID_REPAIRING,              "Починить тело",                             "Solid repairing" )
+    }
+    POPUP_IMP( "&Определение", "Definition" )
+    {
+      MENUITEM_IMP( CM_GETEDGENUMBER_INFACE,   "Номера ребра в грани",                   "Number of an edge in face" )
+      MENUITEM_IMP( CM_GETFACENUMBER,          "Номера грани в теле",                    "Number of a face in solid" )
+      MENUITEM_IMP( CM_GETEDGENUMBER,          "Номера ребра в теле",                    "Number of an edge in solid" )
+      MENUITEM_IMP( CM_GETFACEBYNUMBER,        "Грани по номеру в теле",                 "Faces by a number in solid" )
+      MENUITEM_IMP( CM_GETEDGEBYNUMBER,        "Ребра по номеру в теле",                 "Edges by a number in solid" )
+      MENUITEM_IMP( CM_FACEFILLETTYPE ,        "Определение типа скругления грани",      "Definition of face fillet type" )
+      MENUITEM_IMP( CM_RECOGNITIONFILLETFACES, "Распознавание граней скругления в теле", "Recognition fillet faces in solid" )
+    }
+    POPUP_IMP( "Тесты сопряжений", "Matings tests" )
+    {
+      MENUITEM_IMP( CM_COMMON_MATES_TEST,     "Общее тестирование сопряжений",                  "Common testing of matings" )
+      MENUITEM_IMP( CM_MATE_CUBE,             "Сборка из жестко сопряженных кирпичей",          "Assembly from rigidly mated bricks" )
+      MENUITEM_IMP( CM_MATE_FRACTAL,          "Фрактальное сопряжение",                         "Fractal mating" )
+      MENUITEM_IMP( CM_MATE_DISTRIBUTED_DOF,  "Сопряжения с распределенными степенями свободы", "Matings with distributed degrees of freedom" )
+      MENUITEM_IMP( CM_LINEAR_PATTERN,        "Линейный массив компонент",                      "Linear pattern" )
+      MENUITEM_IMP( CM_ANGULAR_PATTERN,       "Угловой массив компонент",                       "Angular pattern" )
+    }
+    POPUP_IMP( "Слайд", "Slide" )
+    {
+      MENUITEM_IMP( CM_RENDERING,        "Всех объектов",              "All objects" )
+      MENUITEM_IMP( CM_SURFACERENDERING, "Поверхностей",               "Surfaces" )
+      MENUITEM_IMP( CM_SOLIDRENDERING,   "Твердых тел",                "Solid bodies" )
+      MENUITEM_IMP( CM_MANUFACTURING,    "Графика перестроения тела",  "Diagram of solid rebuilding" )
+    }
+    MENUITEM SEPARATOR
+    POPUP_IMP( "Вывод в файл для печати", "Output to file for print" )
+    {
+      MENUITEM_IMP( CM_PRINTPLOTT,  "Векторный вид", "Plot" )
+      MENUITEM_IMP( CM_PRINTBITMAP, "Растровый вид", "Bitmap" )
+    }
+  }
+
+  POPUP_IMP( "&Hастройка", "&Setup" )
+  {
+    POPUP_IMP( "Цвет", "Color" )
+    {
+      MENUITEM_IMP( CM_SETOBJECTCOLOR,       "Объекта",                 "Object"               )
+      MENUITEM_IMP( CM_SETCOLORSELECTED,     "Выделенных объектов",     "Selected object"      )
+      MENUITEM_IMP( CM_SETCONNECTIONCOLOR,   "Зависимости",             "Connection"           )
+      MENUITEM_IMP( CM_SETCOLORSELECTEDCONN, "Выделенных зависимостей", "Selected connections" )
+      MENUITEM_IMP( CM_SETBACKGRCOLOR,       "Фона рабочих окон",       "Windows background"   )
+      MENUITEM_IMP( CM_GLRENDERCOLOR,        "Закраски объекта",        "Object rendering"     )
+      MENUITEM_IMP( CM_SETSELECTCOLOR,       "Выделенный",              "Selected"             )
+    }
+    POPUP_IMP( "Настройки рисования", "Drawing properties" )
+    {
+      MENUITEM_IMP( CM_SET_OGL_VIEWTYPE, "Способ отображения OpenGL",       "Type of OpenGL view"              )
+      MENUITEM_IMP( CM_SETVISUALSAG,     "Прогиба линий при отображении",   "Sag of lines while visualization" )
+      MENUITEM_IMP( CM_SETSTYLEWIDTH,    "Толщина линий рисования",         "Line width for draw"              )
+      MENUITEM_IMP( CM_SETOBJECTWIDTH,   "Толщина линий рисования объекта", "Line width for object draw"       )
+      MENUITEM_IMP( CM_UVMESHCOUNT,      "Количество u-линий и v-линий",    "Count of u-line and v-line"       )
+      MENUITEM_IMP( CM_CURVATURE_PLOT,   "Масштаб рисования кривизны",      "Curvature scale for plot"         )
+    }
+    POPUP_IMP( "Оптические свойства", "Visual properties" )
+    {
+      MENUITEM_IMP( CM_GLPROPERT,         "Материал объекта",  "Object material"   )
+      MENUITEM_IMP( CM_GLAMBIENT,         "Фон объекта",       "Object background" )
+      MENUITEM_IMP( CM_GLDIFFUSE,         "Диффузия",          "Diffusion"         )
+      MENUITEM_IMP( CM_GLSPECULARITY,     "Зеркальность",      "Specularity"       )
+      MENUITEM_IMP( CM_GLSHININESS,       "Блеск",             "Shininess"         )
+      MENUITEM_IMP( CM_GLOPACITY,         "Непрозрачность",    "Opacity"           )
+      MENUITEM_IMP( CM_GLEMISSION,        "Излучение объекта", "Object emission"   )
+      MENUITEM_IMP( CM_SETLIGHTDIRECTION, "Направление света", "Light direction"   )
+    }
+    POPUP_IMP( "Видимость", "Visibility" )
+    {
+      MENUITEM_IMP( CM_INVISIBLEOBJECT,      "Сделать объект невидимым",        "Make the object invisible"    )
+      MENUITEM_IMP( CM_VISIBLEALLOBJECTS,    "Показать все объекты",            "Show all the objects"         )
+      MENUITEM_IMP( CM_VISIBLEPOINTS,        "Показать точки",                  "Show points"                  )
+      MENUITEM_IMP( CM_VISIBLECURVES,        "Показать кривые",                 "Show curves"                  )
+      MENUITEM_IMP( CM_VISIBLESURFACES,      "Показать поверхности",            "Show surfaces"                )
+      MENUITEM_IMP( CM_VISIBLEBODIES,        "Показать тела",                   "Show bodies"                  )
+      MENUITEM_IMP( CM_PLACEMENT_VISIBILITY, "Видимость системы координат",      "Сoordinate system visibility" )
+    }
+    POPUP_IMP( "Параметры", "Options" )
+    {
+      MENUITEM_IMP( CM_SETMAKEGRID, "Рассчитывать триангуляцию модели", "Calculate model triangulation" )
+      MENUITEM_IMP(CM_DOUBLE_MESH, "Полигональные объекты double/float", "Polygon data double/float" )
+      MENUITEM_IMP( CM_ITEMSMERGING, "Слияние элементов",               "Items merging"                 )
+      // Не копировать строители операций при редактировании их параметров (свойств)
+      MENUITEM_IMP( CM_EDIT_SAME_CREATORS,    "Не копировать строители при редактировании", "Don't copy builders when editing"    )
+      MENUITEM_IMP( CM_REBUILDTIMERESULTFILE, "Печатать файл замеров времени",              "Print the file of time measurements" )
+      MENUITEM_IMP( CM_CHECK_READ_TIME,       "Выводить время чтения",                      "Show read time"                      )
+      MENUITEM_IMP( CM_CHECK_WRITE_TIME,      "Выводить время записи",                      "Show write time"                     )
+      MENUITEM_IMP( CM_CHECK_OPERATION_TIME,  "Выводить время операции",                    "Show operation time"                 )
+
+      POPUP_IMP( "Величина", "Value" )
+      {
+        MENUITEM_IMP( CM_SETDEVIATIONSAG, "Углового шага при вычислениях", "Angular spacing while calculation" )
+        MENUITEM_IMP( CM_DELTA_RANGE,     "Шага смещения изображения",     "Step of image shift"    )
+        MENUITEM_IMP( CM_DELTA_ANGLE,     "Угла поворота изображения",     "Step of image rotation" )
+        MENUITEM_IMP( CM_SETCURSORSTEP,   "Шага курсора",                  "Cursor step"            )
+      }
+      POPUP_IMP( "Порядок NURBS", "Degree of NURBS" )
+      {
+        MENUITEM_IMP( CM_SETCURVEDEGREE,   "Создаваемой кривой",      "Created curve"   )
+        MENUITEM_IMP( CM_SETSURFACEDEGREE, "Создаваемой поверхности", "Created surface" )
+      }
+      POPUP_IMP( "Атрибуты данных вида", "View data attributes" )
+      {
+        MENUITEM_IMP( CM_ADD_VIEW_ATTR,     "Добавить/изменить",  "Add/change" )
+        MENUITEM_IMP( CM_REMOVE_VIEW_ATTR,  "Удалить",            "Remove"     )
+      }
+    }
+
+    POPUP_IMP( "Многопоточность", "Multithreading" )
+    {
+      MENUITEM_IMP( CM_MULTITHREADED_MODE,    "Режим многопоточности", "Multithreaded mode" )
+      MENUITEM_IMP( CM_LIST_OF_MODES,         "Список режимов",        "List of modes"      )
+      MENUITEM_IMP( CM_SWITCH_MULTITHREADING, "Сменить режим",         "Switch Mode"        )
+    }
+    POPUP_IMP( "Включить/выключить", "Switch ON/OFF" )
+    {
+#ifdef _DEBUG
+      MENUITEM_IMP( CM_SKIP_ASSERTS, "Сообщения ASSERT", "ASSERT messages" )
+      MENUITEM_IMP( CM_SWITCH_DEBUG_DRAW, "Отладочная отрисовка", "DEBUG drawing" )
+#endif // _DEBUG
+      MENUITEM_IMP( CM_WRITE_MODEL_TREE, "Запись дерева модели", "Writing model tree" )
+      MENUITEM_IMP( CM_WORK_OF_CREATORS, "Работа построителей", "The work of constructors" )
+      MENUITEM_IMP( CM_MODE_SPECIAL_HIGHLIGHT, "  ", "The sub-object highliting" )
+    }
+
+    MENUITEM_IMP( CM_APPLY_CONFIG_FILE, "Применить настройки", "Apply config" )
+  }
+
+  POPUP_IMP( "&Oкно", "&Window" )
+  {
+    POPUP_IMP( "Ориентировать", "Set" )
+    {
+      MENUITEM_IMP( CM_VIEWISOPROJ,   "Изометрия",          "Isometry" )
+      MENUITEM_IMP( CM_VIEWFRONTPROJ, "Вид спереди",        "Front view" )
+      MENUITEM_IMP( CM_VIEWREARPROJ,  "Вид сзади",          "Rear view" )
+      MENUITEM_IMP( CM_VIEWUPPROJ,    "Вид сверху",         "Top view" )
+      MENUITEM_IMP( CM_VIEWDOWNPROJ,  "Вид снизу",          "Bottom view" )
+      MENUITEM_IMP( CM_VIEWLEFTPROJ,  "Вид слева",          "Left-side view" )
+      MENUITEM_IMP( CM_VIEWRIGHTPROJ, "Вид справа",         "Right-side view" )
+      MENUITEM_IMP( CM_SETVIEWVECTOR, "По вектору взгляда", "By view vector" )
+    }
+    POPUP_IMP( "Расположить", "Arrange" )
+    {
+      MENUITEM_IMP( CM_WINDOWTILE,    "Мозаикой",           "Tile" )
+      MENUITEM_IMP( CM_WINDOWCASCADE, "Каскадом",           "Cascade" )
+      MENUITEM_IMP( CM_WINDOWARRANGE, "Последовательно",    "Sequentially" )
+    }
+    POPUP_IMP( "Изменить", "Change" )
+    {
+      MENUITEM_IMP( CM_FITONFIRSTLOADING,   "Выкл/Вкл адаптацию модели в окно",  "Disable/Enable model adaptation in the window" )
+      MENUITEM_IMP( CM_FITMODELTOWINDOW,    "Вписать модель в окно",  "Fit object to window / Show all" )
+      MENUITEM_IMP( CM_SETVIEWPLACEMENT,    "Совместить с объектом",  "Match with object" )
+      MENUITEM_IMP( CM_SETPROJECTION,       "Ориентацию",             "Orientation" )
+      MENUITEM_IMP( CM_SETDEPTH,            "Глубину",                "Depth" )
+      MENUITEM_IMP( CM_CHANGESCALE,         "Масштаб",                "Scale" )
+      MENUITEM_IMP( CM_SETVIEWPOINT,        "Точку наблюдения",       "View point" )
+    }
+    POPUP_IMP( "Закрыть", "Close" )
+    {
+      MENUITEM_IMP( CM_WINDOWCLOSE_ACTIVE,  "Активное окно",  "Active window" )
+      MENUITEM_IMP( CM_WINDOWCLOSE_ALL,     "Все окна",       "All windows" )
+    }
+  }
+
+  POPUP_IMP( "&Помощь", "&Help" )
+  {
+    MENUITEM_IMP( CM_HELPABOUT, "Список горячих клавиш", "List of hot keys" )
+    MENUITEM SEPARATOR
+    POPUP_IMP( "Создание новых команд", "Creation of new commands" )
+    {
+      MENUITEM_IMP( CM_MAKEUSERCOMAND0, "Пользовательская команда 0", "User command 0" )
+      MENUITEM_IMP( CM_MAKEUSERCOMAND1, "Пользовательская команда 1", "User command 1" )
+      MENUITEM_IMP( CM_MAKEUSERCOMAND2, "Пользовательская команда 2", "User command 2" )
+      MENUITEM_IMP( CM_MAKEUSERCOMAND3, "Пользовательская команда 3", "User command 3" )
+      MENUITEM_IMP( CM_MAKEUSERCOMAND4, "Пользовательская команда 4", "User command 4" )
+      MENUITEM_IMP( CM_MAKEUSERCOMAND5, "Пользовательская команда 5", "User command 5" )
+      MENUITEM_IMP( CM_MAKEUSERCOMAND6, "Пользовательская команда 6", "User command 6" )
+      MENUITEM_IMP( CM_MAKEUSERCOMAND7, "Пользовательская команда 7", "User command 7" )
+      MENUITEM_IMP( CM_MAKEUSERCOMAND8, "Пользовательская команда 8", "User command 8" )
+      MENUITEM_IMP( CM_MAKEUSERCOMAND9, "Пользовательская команда 9", "User command 9" )
+    }
+    MENUITEM SEPARATOR
+    POPUP_IMP( "&Примеры", "Samples" )
+    {
+      POPUP_IMP( "&Моделирование", "Modeler" )
+      {
+        MENUITEM_IMP( CM_SAMPLE_ATTRIBUTES,            "Использование атрибутов",           "Using attributes" )
+        MENUITEM_IMP( CM_SAMPLE_SOLID_TORUS_SPLINE,    "Сплайновый тор",                    "Torus spline solid" )
+        MENUITEM_IMP( CM_SAMPLE_SOLID_SPLIT_BALL,      "Разрезать шар на части",            "Split the ball" )
+        MENUITEM_IMP( CM_SAMPLE_CYLINDER_MANUAL_SPLIT, "Создать грани разъема на цилиндре", "Create split faces on cylinder face" )
+        MENUITEM_IMP( CM_SAMPLE_ANIMATION_OF_BENDING,  "&Анимация гибки",                   "Animation bending" )
+        MENUITEM_IMP( CM_SAMPLE_LOFTED_BEND,           "Обечайка",                          "Lofted bend" )
+        MENUITEM_IMP( CM_SAMPLE_SOLIDS_CLASSIFICATION, "Множественная классификация тел",   "Multiple solids classification" )
+        MENUITEM_IMP( CM_SAMPLE_CLOSE_CORNER,          "Замыкание угла",                    "Closed corner" )
+        MENUITEM_IMP( CM_SAMPLE_SEVERAL_BENDS,         "Несколько сгибов",                  "Several bends" )
+      }
+      MENUITEM SEPARATOR
+      POPUP_IMP( "Решатель", "Solver" )
+      {
+        MENUITEM_IMP( CM_SAMPLE_PARAMETRIC_SKETCH, "Параметрический эскиз",          "Parametric sketch" )
+        MENUITEM_IMP( CM_SAMPLE_WRITE_SKETCH,      "Запись параметрического эскиза", "Write a parametric sketch" )
+        MENUITEM_IMP( CM_SAMPLE_READ_SKETCH,       "Чтение параметрического эскиза", "Read a parametric sketch" )
+        MENUITEM_IMP( CM_SAMPLE_SPINNING_BLOCK,    "Угловое сопряжение",             "Angular mate" )
+        MENUITEM_IMP( CM_SAMPLE_DODECAHEDRON,      "Сборка додекаэдра",              "Dodecahedron assembly " )
+      }
+      MENUITEM SEPARATOR
+      POPUP_IMP( "Полигональная сетка", "Polymesh" )
+      {
+        MENUITEM_IMP( CM_SAMPLE_POLYMESH_BUILD, "Икосаэдр и додекаэдр", "Icosahedron and dodecahedron" )
+        MENUITEM_IMP( CM_SAMPLE_POLYMESH_CUT, "Мишень", "Dartboard" )
+        MENUITEM_IMP( CM_SAMPLE_POLYMESH_OFFSET_PATH, "Оффсет цепочки", "Path offset" )
+      }
+      MENUITEM SEPARATOR
+      MENUITEM_IMP( CM_SAMPLE_COLLISION_DETECTION,     "Пример поиска соударений",                         "Collision detection demo" )
+      MENUITEM_IMP( CM_SAMPLE_CHECK_COLLISIONS,        "Поиск покомпонентных соударений",                  "Detect componentwise collisions" )
+      MENUITEM_IMP( CM_SAMPLE_CHECK_COLLISIONS_GROUPS, "Пример поиска соударений между группами объектов", "Detect collisions between groups of objects" )
+    }
+    MENUITEM SEPARATOR
+    POPUP_IMP( "Тесты многопоточности", "Multithreaded tests" )
+    {
+      MENUITEM_IMP( CM_SHELLMULTITHREADING,      "Сравнить последовательное и параллельное построение сетки",         "Compare serial and parallel mesh calculation" )
+      MENUITEM_IMP( CM_PARALLELPROJECTION,       "Сравнить последовательное и параллельное построение проекции вида", "Compare serial and parallel creation of view projection" )
+      MENUITEM_IMP( CM_PROJECTIONMULTITHREADING, "Параллельное проецирование базовых точек",                          "Parallel projection of base points" )
+      MENUITEM_IMP( CM_THREADSAFETY,             "Потокобезопасность кривых",                                         "Curves thread safety" )
+      MENUITEM_IMP( CM_PARALLELPROJECTION2,      "Многопоточное построение проекций (с проверкой)",                   "Multithreaded creation of standard views (with check)" )
+      MENUITEM_IMP( CM_BETAMULTITHREADING1,      "Проецирование в параллельном цикле (в разных режимах)",             "Mapping in a parallel cycle (in different modes)" )
+      MENUITEM_IMP( CM_PARALLELINERTIA,          "Сравнить последовательное и параллельное вычисление МЦХ",           "Compare serial and parallel calculation of MIP" )
+    }
+    MENUITEM SEPARATOR
+    MENUITEM_IMP( CM_ENTERLICENSEKEY, "Лицензионный ключ", "License key" )
+    MENUITEM_IMP( CM_LICENSE_STATUS, "Статус лицензии", "License status" )
+    MENUITEM_IMP( CM_DISABLELICENSES, "Деактивировать все лицензии", "Disable all licenses" )
+  }
+
+} // IDM_MENU_1 MENU
+
+
+IDI_ICON_1 ICON "crystal.ico"
+
+
+ACCELERATORS_BASE ACCELERATORS
+{
+ VK_DELETE,   CM_DELETESELECTED, VIRTKEY
+ VK_ADD,      ZOOMIN,            VIRTKEY, SHIFT
+ VK_SUBTRACT, ZOOMOUT,           VIRTKEY, SHIFT
+ VK_MULTIPLY, SETORIGIN,         VIRTKEY, SHIFT
+}
+
+
+IDD_DIALOG_BASE DIALOG 18, 19, 219, 38
+#if defined ( __NATIVE_LANGUAGE__ )
+STYLE WS_POPUP | WS_VISIBLE | WS_BORDER
+#else
+STYLE WS_POPUP | WS_VISIBLE | WS_BORDER
+#endif
+FONT 8, "MS Sans Serif"
+{
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "Введите",    IDC_TEXT,    4,  4, 208, 16
+#else
+ LTEXT "Enter",    IDC_TEXT,    4,  4, 208, 16
+#endif
+ EDITTEXT            IDC_EDIT1,   3, 24, 129, 12, ES_AUTOHSCROLL
+#if defined ( __NATIVE_LANGUAGE__ )
+ DEFPUSHBUTTON "OK", IDOK,      137, 24,  38, 12
+#else
+ DEFPUSHBUTTON "OK", IDOK,      137, 24,  38, 12
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Отказ", IDCANCEL,  182, 24,  33, 12
+#else
+ PUSHBUTTON "Cancel", IDCANCEL,  182, 24,  33, 12
+#endif
+}
+
+
+IDD_DIALOG_ENTER_SPACEPOINT DIALOG 17, 28, 138, 47
+#if defined ( __NATIVE_LANGUAGE__ )
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+#else
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+CAPTION "Введите координаты точки"
+#else
+CAPTION "Enter point coordinates"
+#endif
+FONT 8, "MS Sans Serif"
+{
+ EDITTEXT IDC_EDIT2, 23, 3, 61, 12
+ EDITTEXT IDC_EDIT3, 23, 18, 61, 12
+ EDITTEXT IDC_EDIT4, 23, 32, 61, 12
+#if defined ( __NATIVE_LANGUAGE__ )
+ DEFPUSHBUTTON "OK", IDOK, 92, 3, 39, 18
+#else
+ DEFPUSHBUTTON "OK", IDOK, 92, 3, 39, 18
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Отказ", IDCANCEL, 92, 25, 39, 19
+#else
+ PUSHBUTTON "Cancel", IDCANCEL, 92, 25, 39, 19
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "X", -1, 8, 6, 13, 9
+#else
+ LTEXT "X", -1, 8, 6, 13, 9
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "Y", -1, 8, 21, 13, 9
+#else
+ LTEXT "Y", -1, 8, 21, 13, 9
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "Z", -1, 8, 34, 13, 10
+#else
+ LTEXT "Z", -1, 8, 34, 13, 10
+#endif
+}
+
+
+
+
+IDD_DIALOG_CHAMFER_PARAMETERS DIALOG 17, 28, 241, 122
+STYLE DS_SETFONT | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_THICKFRAME
+#if defined ( __NATIVE_LANGUAGE__ )
+CAPTION "Введите параметры фасок"
+#else
+CAPTION "Enter chamfer parameters"
+#endif
+FONT 8, "MS Sans Serif"
+{
+DEFPUSHBUTTON "OK", IDOK, 195,83,39,14
+PUSHBUTTON "Cancel", IDCANCEL, 195,101,39,14
+LTEXT           "index",-1,8,6,19,9
+LTEXT           "distance",-1,41,7,32,9
+LTEXT           "angle/distance",-1,84,7,49,10
+LTEXT           "type",-1,143,7,13,10
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON " Добавить", IDYES,195,5,39,12
+#else
+ PUSHBUTTON "Add", IDYES,195,5,39,12
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Удалить", IDNO,195,21,39,12
+#else
+ PUSHBUTTON "Remove", IDNO,195,21,39,12
+#endif
+CONTROL         "",IDC_CHAMFERALLEQUAL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,211,45,16,10
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "Все равные", -1,201,36,31,9
+#else
+ LTEXT "All equal", -1,201,36,31,9
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "N Узлов", -1,201,36,31,9
+#else
+ LTEXT "N Joints",-1,197,54,37,9
+#endif
+EDITTEXT        IDC_EDIT1,196,63,38,12,ES_AUTOHSCROLL
+}
+
+
+IDD_DIALOG_SELECT_PROJECTION DIALOG 17, 27, 117+15, 118
+#if defined ( __NATIVE_LANGUAGE__ )
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+#else
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+CAPTION "Установка проекции"
+#else
+CAPTION "Setting of projection"
+#endif
+FONT 8, "MS Sans Serif"
+{
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "", IDC_STATIC, 5, 5, 80, 80
+#else
+ PUSHBUTTON "", IDC_STATIC, 5, 5, 80, 80
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ DEFPUSHBUTTON "OK", IDOK,     76+15, 6, 35, 14
+#else
+ DEFPUSHBUTTON "OK", IDOK,     76+15, 6, 35, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Отказ", IDCANCEL, 76+15, 24, 35, 14
+#else
+ PUSHBUTTON "Cancel", IDCANCEL, 76+15, 24, 35, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Iso", IDC_IZO,    76+15, 43, 35, 14
+#else
+ PUSHBUTTON "Iso", IDC_IZO,    76+15, 43, 35, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "X0Y", IDC_X0Y,    76+15, 60, 35, 14
+#else
+ PUSHBUTTON "X0Y", IDC_X0Y,    76+15, 60, 35, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Z0X", IDC_Z0X,    76+15, 79, 35, 14
+#else
+ PUSHBUTTON "Z0X", IDC_Z0X,    76+15, 79, 35, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Y0Z", IDC_Y0Z,    76+15, 97, 35, 14
+#else
+ PUSHBUTTON "Y0Z", IDC_Y0Z,    76+15, 97, 35, 14
+#endif
+}
+
+
+IDD_DIALOG_ENTER_CONTOUR DIALOG 17, 28, 64, 114
+#if defined ( __NATIVE_LANGUAGE__ )
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+#else
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+CAPTION "Ввод контура"
+#else
+CAPTION "Enter a contour"
+#endif
+FONT 8, "MS Sans Serif"
+{
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "B-cплайн",     IDC_PUSHBUTTON_SPLINE,   6,  6, 50, 14
+#else
+ PUSHBUTTON "B-spline",     IDC_PUSHBUTTON_SPLINE,   6,  6, 50, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Отрезок",      IDC_PUSHBUTTON_SEGMENT,  6, 24, 50, 14
+#else
+ PUSHBUTTON "Segment",      IDC_PUSHBUTTON_SEGMENT,  6, 24, 50, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Полилини\xFF", IDC_PUSHBUTTON_POLYLINE, 6, 42, 50, 14
+#else
+ PUSHBUTTON "Polyline", IDC_PUSHBUTTON_POLYLINE, 6, 42, 50, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Дуга",         IDC_PUSHBUTTON_ARC,      6, 60, 50, 14
+#else
+ PUSHBUTTON "Arc",         IDC_PUSHBUTTON_ARC,      6, 60, 50, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Замкнуть",     IDC_PUSHBUTTON_CLOSE,    6, 77, 50, 14
+#else
+ PUSHBUTTON "Close",     IDC_PUSHBUTTON_CLOSE,    6, 77, 50, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Выход",        IDC_PUSHBUTTON_EXIT,     6, 94, 50, 14
+#else
+ PUSHBUTTON "Exit",        IDC_PUSHBUTTON_EXIT,     6, 94, 50, 14
+#endif
+}
+
+
+IDD_DIALOG_ENTER_DEGREE DIALOG 17, 29, 133, 44
+#if defined ( __NATIVE_LANGUAGE__ )
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+#else
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+CAPTION "Задание порядка поверхности"
+#else
+CAPTION "Specification of surface order"
+#endif
+FONT 8, "MS Sans Serif"
+{
+ EDITTEXT IDC_EDIT5, 60, 8, 25, 12
+ EDITTEXT IDC_EDIT6, 60, 25, 23, 12
+#if defined ( __NATIVE_LANGUAGE__ )
+ DEFPUSHBUTTON "OK", IDOK, 94, 6, 32, 14
+#else
+ DEFPUSHBUTTON "OK", IDOK, 94, 6, 32, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Отказ", IDCANCEL, 95, 24, 31, 14
+#else
+ PUSHBUTTON "Cancel", IDCANCEL, 95, 24, 31, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "Пор\xFFдок по U", -1, 5, 10, 52, 8
+#else
+ LTEXT "Order by U", -1, 5, 10, 52, 8
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "Пор\xFFдок по V", -1, 5, 27, 51, 8
+#else
+ LTEXT "Order by V", -1, 5, 27, 51, 8
+#endif
+}
+
+
+IDD_DIALOG_ENTER_BOOLEAN DIALOG 16, 15, 190, 48
+#if defined ( __NATIVE_LANGUAGE__ )
+STYLE WS_POPUP | WS_VISIBLE | WS_BORDER
+#else
+STYLE WS_POPUP | WS_VISIBLE | WS_BORDER
+#endif
+FONT 8, "MS Sans Serif"
+{
+#if defined ( __NATIVE_LANGUAGE__ )
+ DEFPUSHBUTTON "ДА", IDS_YES, 11, 28, 80, 14
+#else
+ DEFPUSHBUTTON "YES", IDS_YES, 11, 28, 80, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "НЕТ", IDS_NO, 106, 28, 73, 14
+#else
+ PUSHBUTTON "NO", IDS_NO, 106, 28, 73, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "Удалить созданный последним объект?", IDC_TEXT, 11, 9, 168, 12
+#else
+ LTEXT "Whether to delete the last created object?", IDC_TEXT, 11, 9, 168, 12
+#endif
+}
+
+
+IDD_DIALOG_SELECT_DIRECTION DIALOG 19, 29, 118, 42
+#if defined ( __NATIVE_LANGUAGE__ )
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+#else
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+CAPTION "Выбор направления"
+#else
+CAPTION "Specifying the direction"
+#endif
+FONT 8, "MS Sans Serif"
+{
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Изменить", IDC_PUSHBUTTON_CHANGE, 5, 5, 50, 14
+#else
+ PUSHBUTTON "Change", IDC_PUSHBUTTON_CHANGE, 5, 5, 50, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ DEFPUSHBUTTON "OK", IDOK, 63, 5, 50, 14
+#else
+ DEFPUSHBUTTON "OK", IDOK, 63, 5, 50, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Отказ", IDCANCEL, 63, 23, 50, 14
+#else
+ PUSHBUTTON "Cancel", IDCANCEL, 63, 23, 50, 14
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Шаг назад", IDC_PUSHBUTTON_STEPBACK, 5, 23, 50, 14
+#else
+ PUSHBUTTON "Back", IDC_PUSHBUTTON_STEPBACK, 5, 23, 50, 14
+#endif
+}
+
+
+IDD_DIALOG_ENTER_PLANEPOINT DIALOG 17, 28, 167, 36
+#if defined ( __NATIVE_LANGUAGE__ )
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+#else
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+CAPTION "Введите координаты точки на плоскости"
+#else
+CAPTION "Enter coordinates of a point on plane"
+#endif
+FONT 8, "MS Sans Serif"
+{
+ EDITTEXT IDC_EDIT7, 23, 3, 61, 12
+ EDITTEXT IDC_EDIT8, 23, 18, 61, 12
+#if defined ( __NATIVE_LANGUAGE__ )
+ DEFPUSHBUTTON "OK", IDOK, 94, 5, 31, 25
+#else
+ DEFPUSHBUTTON "OK", IDOK, 94, 5, 31, 25
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Отказ", IDCANCEL, 132, 5, 28, 25
+#else
+ PUSHBUTTON "Cancel", IDCANCEL, 132, 5, 28, 25
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "X", -1, 8, 6, 13, 9
+#else
+ LTEXT "X", -1, 8, 6, 13, 9
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ LTEXT "Y", -1, 8, 21, 13, 9
+#else
+ LTEXT "Y", -1, 8, 21, 13, 9
+#endif
+}
+
+
+IDD_TIMETESTRESULT DIALOG DISCARDABLE  0, 0, 300, 170
+#if defined ( __NATIVE_LANGUAGE__ )
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+#else
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+CAPTION "xxxxxx"
+#else
+CAPTION "xxxxxx"
+#endif
+FONT 8, "MS Sans Serif"
+BEGIN
+#if defined ( __NATIVE_LANGUAGE__ )
+    LTEXT           "xxxxxx",IDC_TIMETESTRESULT_TEXT,4,154,235,11
+#else
+    LTEXT           "xxxxxx",IDC_TIMETESTRESULT_TEXT,4,154,235,11
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+    DEFPUSHBUTTON   "OK",IDOK,246,152,50,14,WS_GROUP
+#else
+    DEFPUSHBUTTON   "OK",IDOK,246,152,50,14,WS_GROUP
+#endif
+    CONTROL         "List1",IDC_TIMETESTRESULT_LV,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_ALIGNLEFT | LVS_NOSORTHEADER |
+                    WS_BORDER | WS_TABSTOP,4,4,292,143
+END
+
+IDD_DIALOG_LICENSE DIALOG 30, 30, 430, 87
+#if defined ( __NATIVE_LANGUAGE__ )
+STYLE WS_POPUP | WS_VISIBLE | WS_BORDER | WS_CAPTION
+#else
+STYLE WS_POPUP | WS_VISIBLE | WS_BORDER | WS_CAPTION
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+CAPTION "Введите ключ и подпись лицензии"
+#else
+CAPTION "Enter a key and a signature of the license"
+#endif
+FONT 8, "MS Sans Serif"
+BEGIN
+#if defined ( __NATIVE_LANGUAGE__ )
+    LTEXT           "Ключ",IDC_STATIC_KEY,7,10,45,12
+#else
+    LTEXT           "Key",IDC_STATIC_KEY,7,10,45,12
+#endif
+    EDITTEXT        IDC_EDIT_KEY,55,10,365,12,ES_AUTOHSCROLL
+#if defined ( __NATIVE_LANGUAGE__ )
+    LTEXT           "Подпись",IDC_STATIC_SIG,7,35,45,12
+#else
+    LTEXT           "Signature",IDC_STATIC_SIG,7,35,45,12
+#endif
+    EDITTEXT        IDC_EDIT_SIG,55,35,365,12,ES_AUTOHSCROLL
+#if defined ( __NATIVE_LANGUAGE__ )
+    CONTROL         "Записать данные лицензии в файл?",IDC_CHECK_FILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,55,220,12
+#else
+    CONTROL         "Write the license data to a file?",IDC_CHECK_FILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,55,220,12
+#endif	
+#if defined ( __NATIVE_LANGUAGE__ )
+ DEFPUSHBUTTON "OK", IDOK,      335,65,40,16
+#else
+ DEFPUSHBUTTON "OK", IDOK,      335,65,40,16
+#endif
+#if defined ( __NATIVE_LANGUAGE__ )
+ PUSHBUTTON "Отмена", IDCANCEL,  380,65,40,16
+#else
+ PUSHBUTTON "Cancel", IDCANCEL,  380,65,40,16
+#endif
+END
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+////////////////////////////////////////////////////////////////////////////////
+
+VS_VERSION_INFO VERSIONINFO
+  FILEVERSION 2025,1
+  PRODUCTVERSION 2025,1
+  FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+  FILEFLAGS 0x1L
+#else
+  FILEFLAGS 0x0L
+#endif
+  FILEOS VOS__WINDOWS32
+  FILETYPE VFT_DLL
+  FILESUBTYPE 0x0L
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904e4"
+    BEGIN
+      VALUE "CompanyName", "C3D Labs LLC"                          // \ru Производитель \en Producer
+      VALUE "FileDescription", "Testing of geometrical kernel C3D" // \ru Описание \en Description
+      VALUE "FileVersion", "2025.1"                                // \ru Версия файла \en File version
+      VALUE "InternalName", "Test"                                 // \ru Внутреннее имя \en Internal name
+      VALUE "LegalCopyright", "© 2026 C3D Labs LLC. All rights reserved." // \ru Авторские права \en Copyrights
+      VALUE "OriginalFilename", "test.exe"                        // \ru Исходное имя файла \en Original file name
+      VALUE "ProductName", "Test"                                 // \ru Название продукта \en Product name
+      VALUE "ProductVersion", "2025.1"                            // \ru Версия продукта \en Product version
+    END
+    BLOCK "041904e3"
+    BEGIN
+      VALUE "CompanyName", "C3D Labs LLC"                         // \ru Производитель \en Producer
+      VALUE "FileDescription", "Тестирование геометрического ядра C3D"  // \ru Описание \en Description
+      VALUE "FileVersion", "2025.1"                         // \ru Версия файла \en File version
+      VALUE "InternalName", "Test"                                // \ru Внутреннее имя \en Internal name
+      VALUE "LegalCopyright", "© 2026 C3D Labs LLC. Все права защищены." // \ru Авторские права \en Copyrights
+      VALUE "OriginalFilename", "test.exe"                        // \ru Исходное имя файла \en Original file name
+      VALUE "ProductName", "Test"                                 // \ru Название продукта \en Product name
+      VALUE "ProductVersion", "2025.1"                   // \ru Версия продукта \en Product version
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+#if defined ( __NATIVE_LANGUAGE__ )
+    VALUE "Translation", 0x419, 1251
+#else
+    VALUE "Translation", 0x0409, 1252
+#endif
+  END
+END

@@ -1,0 +1,3 @@
+C:/Users/Petr/Desktop/С3D/Example_work/Example/Build/CMakeFiles/test.dir
+C:/Users/Petr/Desktop/С3D/Example_work/Example/Build/CMakeFiles/INSTALL.dir
+C:/Users/Petr/Desktop/С3D/Example_work/Example/Build/CMakeFiles/ALL_BUILD.dir

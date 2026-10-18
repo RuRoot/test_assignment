@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="16.0">
+  <ItemGroup>
+    <ClCompile Include="Source\Create\test_constraint.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_arc.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_assembly.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_contour.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_curve.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_line.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_multiline.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_point.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_curve3d.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_sheet.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_shell.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_map.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_solid.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_surface_.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_point3d.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_surface.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_user.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_multithreading.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Create\test_mesh.cpp">
+      <Filter>Create</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Edit\test_edit_contour.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Edit\test_edit_curve.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Edit\test_edit_multiline.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Edit\test_edit_curve3d.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Edit\test_edit_map.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Edit\test_edit_solid.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Edit\test_edit_space.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Edit\test_edit_surface.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Edit\test_edit_wireframe.cpp">
+      <Filter>Edit</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main\test_draw.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main\test_frame1.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main\test_frame2.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main\test_frame3.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main\test_service.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Main\test_variables.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Make\test_computation.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Make\test_converter.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Make\test_mates.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Make\test_rendering.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Make\test_rendering_.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Make\test_rendering_context.cpp">
+      <Filter>Make</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_comanager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_gr_draw.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_manager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_property.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_temporal_plane.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_temporal.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_tree.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_tree_filter.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_window.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_window_add.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_window_find.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Manager\test_window_move.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_animation_of_bending.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_attributes.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_user_attributes.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_solid_elementary.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_solid_splitting.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_solids_classification.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_parametric_sketch.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_read_write_constraints.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_read_write_c3d_as_part.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_spinning_block.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_check_collisions.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_collision_detection.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_wireframe.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_converter.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_pmi.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_lofted_bend.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_dodecahedron.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_close_corner.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_several_bends.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Samples\test_sample_polymesh.cpp">
+      <Filter>Samples</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Win\test.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Win\test_dialogs.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Win\test_frame.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Win\test_set_filter.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Win\test_set_property.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Win\test_set_tree.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Win\test_std_afx.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Win\test_window_graphic.cpp">
+      <Filter>WinTest</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Create\test_plane.h">
+      <Filter>Create</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Create\test_space.h">
+      <Filter>Create</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Create\test_varsect.h">
+      <Filter>Create</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Create\test_mesh.h">
+      <Filter>Create</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Edit\test_edit_plane.h">
+      <Filter>Edit</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Edit\test_edit_space.h">
+      <Filter>Edit</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Main\test_draw.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Main\test_frame.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Main\test_service.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Main\test_variables.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Make\test_computation.h">
+      <Filter>Make</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Make\test_converter.h">
+      <Filter>Make</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Make\test_mates.h">
+      <Filter>Make</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Make\test_rendering.h">
+      <Filter>Make</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Make\test_rendering_context.h">
+      <Filter>Make</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_comanager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_gr_draw.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_manager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_property.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_property_title.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_style.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_temporal_plane.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_temporal.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_tree.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_tree_filter.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Manager\test_window.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Samples\test_samples.h">
+      <Filter>Samples</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Samples\test_sample_user_attributes.h">
+      <Filter>Samples</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Win\test.h">
+      <Filter>WinTest</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Win\test_prompt.h">
+      <Filter>WinTest</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Win\test_std_afx.h">
+      <Filter>WinTest</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Source\Win\test.rc">
+      <Filter>WinTest</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Create">
+      <UniqueIdentifier>{81654F80-8990-33DC-A176-4EF4892FD10F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Edit">
+      <UniqueIdentifier>{E46CA479-9C8B-361B-8BB2-A746D13B6F8E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{893E3A74-E473-32FE-9999-E97CBC565057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Make">
+      <UniqueIdentifier>{0E321D0C-65EF-3089-99C6-16BAAC2F38C4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{FA4F7F09-F61B-3C5B-AC1B-31495E83FA26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Samples">
+      <UniqueIdentifier>{9561478C-D166-3CC5-B45C-8187255D90CD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinTest">
+      <UniqueIdentifier>{0A0A6405-14F3-3F1C-B8C8-D11A3F0C847D}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

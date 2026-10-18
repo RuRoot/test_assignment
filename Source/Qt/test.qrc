@@ -1,0 +1,26 @@
+<!DOCTYPE RCC><RCC version="1.0">
+  <qresource>
+    <file>res/new.png</file>
+    <file>res/open.png</file>
+    <file>res/save.png</file>
+    <file>res/geochild.png</file>
+    <file>res/swiss-knife-red.png</file>
+    <file>res/swiss-knife-orange.png</file>
+    <file>res/swiss-knife-yellow.png</file>
+    <file>res/swiss-knife-green.png</file>
+    <file>res/swiss-knife-sky.png</file>
+    <file>res/swiss-knife-blue.png</file>
+    <file>res/swiss-knife-violet.png</file>
+    <file>res/swiss-knife-gray.png</file>
+    <file>res/swiss-knife-black.png</file>
+    <file>res/swiss-knife-pink.png</file>
+    <file>res/view_all_32.png</file>
+    <file>res/view_front_32.png</file>
+    <file>res/view_back_32.png</file>
+    <file>res/view_top_32.png</file>
+    <file>res/view_bottom_32.png</file>
+    <file>res/view_left_32.png</file>
+    <file>res/view_right_32.png</file>
+    <file>res/isometry_x.png</file>  
+  </qresource>
+</RCC>
