@@ -114,6 +114,37 @@ MbItem* create_poly_model_triang(SolidSPtr& figure){
     return nullptr;
 }
 
+// построение скругления для Block(20.0, 800.0, 20.0)
+SolidSPtr make_fillet(SolidSPtr& figure) {
+    if (figure == nullptr) {
+        return nullptr;
+    }
+    c3d::EdgesSPtrVector baseEdges{};
+
+    figure->GetEdges(baseEdges);
+
+    SmoothValues c3dDistanceParametrs{};
+
+    c3dDistanceParametrs.InitEquidistantFillet(5.0, 5.0); 
+
+    c3dDistanceParametrs.SetBegLength() = 100.0;
+    c3dDistanceParametrs.SetEndLength() = 100.0;
+
+    MbSNameMaker filletMaker(ct_FullFilletSolid, MbSNameMaker::i_SideNone, 0);
+    c3d::FacesSPtrVector facesAdjacentToEdges{}; 
+
+    MbShellFilletValues c3dFilleParametrs(baseEdges, facesAdjacentToEdges, c3dDistanceParametrs, filletMaker);
+    c3d::SolidSPtr filletResult{};
+
+    MbResultType filletCode = ::FilletSolid(*figure, cm_Copy, c3dFilleParametrs, filletResult);
+
+    if (filletCode == rt_Success && filletResult != nullptr) {
+          return(filletResult);
+    }
+       
+        return nullptr;
+}
+
 
 void study_area::create_specific_initial_scene(WorkWindow& window) {
 
@@ -155,37 +186,7 @@ void study_area::create_specific_initial_scene(WorkWindow& window) {
         window.AddItem(*operand_result, nullptr, true);
     }
 
-    // 3.0 Построение скругления
 
-    // 3.1 Построение тела для применения операции скругления
-
-    MbCartPoint3D place5 = MbCartPoint3D(0.0, 0.0, 800.0);
-    MbPlacement3D block_filled_place(place5);
-    c3d::SolidSPtr block_filled = create_block(20.0, 800.0, 20.0, block_filled_place, 5);
-    
-    // 3.2 Применение операции скругления
-
-    c3d::SolidSPtr result_block = make_fillet(block_filled);
-
-    if (result_block != nullptr) {
-        window.AddItem(*result_block, nullptr, true);
-    }
-    else {
-        window.AddItem(*block_filled, nullptr, true);
-    }
-
-    // 4.0 Построение полигональной модели тела,с помощью вычисления триангуляции
-   
-    // 4.1 Построение тела для треангуляции
-    MbCartPoint3D place6 = MbCartPoint3D(0.0, 0.0, 1200.0);
-    MbPlacement3D block_triangl_place(place6);
-    c3d::SolidSPtr block_triangl = create_block(20.0, 800.0, 20.0, block_triangl_place, 6);
-    
-    // 4.2 Построение треангуляции
-    MbItem* meshResult = create_poly_model_triang(block_triangl);
-    if (meshResult != nullptr) {
-        window.AddItem(*meshResult, nullptr, true);
-    }
 }
 
 
