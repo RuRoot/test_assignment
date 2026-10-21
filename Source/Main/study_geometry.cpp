@@ -1,14 +1,20 @@
 #include "study_geometry.h"
-//#include <debugapi.h>
-#include <tool_cstring.h>
-#include <Windows.h>
-#include <op_shell_parameter.h>
-#include <array>
+//#include <tool_cstring.h>
+//#include <Windows.h>
+//#include <op_shell_parameter.h>
+//#include <array>
 #include <action_solid.h>
 #include <test_window.h>
-#include <mb_vector3d.h>
-#include <mb_operation_result.h>
-#include <mb_data.h>
+//#include <mb_vector3d.h>
+//#include <mb_operation_result.h>
+//#include <mb_data.h>
+#include <action_polymesh.h>
+//#include <mesh.h>
+#include <op_polymesh_parameter.h>
+//#include <test_edit_space.h>
+//#include <polymesh.h>
+//#include <mesh_provider.h>
+#include <polymesh_topo.h>
 
 using namespace c3d;
 
@@ -169,7 +175,42 @@ void study_area::create_specific_initial_scene(WorkWindow& window) {
         window.AddItem(*triag_mesh, nullptr, true);
     }
 
-    // 4.0 
+    // 4.0 Создание полигональной модели тела с помощью операции ремешинга
+
+    MbCartPoint3D place6 = MbCartPoint3D(0.0, 900.0, 880.0);
+    MbPlacement3D block_poly_remesh_place(place6);
+
+    MbItem* meshItem = triag_mesh;
+
+    if (meshItem != nullptr && meshItem->IsA() == st_Mesh) {
+
+        MbMesh* originalMesh = static_cast<MbMesh*>(meshItem);
+
+        MbRemeshParams obj{};
+        c3d::IndicesVector fixedEdges{};
+        obj.InitIncrementalUniform(2.0, fixedEdges, 45.0);
+
+        MbPolymeshTopo* topo = MbPolymeshTopo::Create(*originalMesh, 0.001);
+
+        MbPolymesh mesh(topo);
+
+        MbResultType res = ::Remesh(obj, mesh);
+
+        if (res == rt_Success) {
+            MbMesh* remeshedMesh = new MbMesh();
+            MbStepData stepData;
+            MbFormNote note;
+            MbMatrix3D transformMatrix;
+            
+            mesh.CalculateMesh(stepData, note, *remeshedMesh);
+            block_poly_remesh_place.GetMatrixInto(transformMatrix);
+
+            remeshedMesh->Transform(transformMatrix);
+            window.AddItem(*remeshedMesh, nullptr, true);
+        }
+
+    }
+
 }
 
 
