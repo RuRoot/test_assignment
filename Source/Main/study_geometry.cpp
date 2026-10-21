@@ -114,38 +114,6 @@ MbItem* create_poly_model_triang(SolidSPtr& figure){
     return nullptr;
 }
 
-// построение скругления для Block(20.0, 800.0, 20.0)
-SolidSPtr make_fillet(SolidSPtr& figure) {
-    if (figure == nullptr) {
-        return nullptr;
-    }
-    c3d::EdgesSPtrVector baseEdges{};
-
-    figure->GetEdges(baseEdges);
-
-    SmoothValues c3dDistanceParametrs{};
-
-    c3dDistanceParametrs.InitEquidistantFillet(5.0, 5.0); 
-
-    c3dDistanceParametrs.SetBegLength() = 100.0;
-    c3dDistanceParametrs.SetEndLength() = 100.0;
-
-    MbSNameMaker filletMaker(ct_FullFilletSolid, MbSNameMaker::i_SideNone, 0);
-    c3d::FacesSPtrVector facesAdjacentToEdges{}; 
-
-    MbShellFilletValues c3dFilleParametrs(baseEdges, facesAdjacentToEdges, c3dDistanceParametrs, filletMaker);
-    c3d::SolidSPtr filletResult{};
-
-    MbResultType filletCode = ::FilletSolid(*figure, cm_Copy, c3dFilleParametrs, filletResult);
-
-    if (filletCode == rt_Success && filletResult != nullptr) {
-          return(filletResult);
-    }
-       
-        return nullptr;
-}
-
-
 void study_area::create_specific_initial_scene(WorkWindow& window) {
 
     // 1. Построение элементарных тел
@@ -185,8 +153,23 @@ void study_area::create_specific_initial_scene(WorkWindow& window) {
     if (SolidSPtr operand_result = create_UN(block_operand, cylinder_operand)) {
         window.AddItem(*operand_result, nullptr, true);
     }
+    
+    // 3.0 Построение полигональной модели при помощи триангуляции
 
+    // 3.1 Построение базовго тела для триангуляции
 
+    MbCartPoint3D place5 = MbCartPoint3D(60.0, 0.0, 800.0);
+    MbPlacement3D block_poly_triag_place(place5);
+
+    // 3.2 Создание полигональной модели при помощи триангуляции на основе базового тела
+
+    SolidSPtr block_poly_triag = create_block(20.0, 800, 20.0, block_poly_triag_place, 5);
+    MbItem* triag_mesh = create_poly_model_triang(block_poly_triag);
+    if (triag_mesh != nullptr) {
+        window.AddItem(*triag_mesh, nullptr, true);
+    }
+
+    // 4.0 
 }
 
 
