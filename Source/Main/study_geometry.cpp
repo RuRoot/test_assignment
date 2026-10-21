@@ -1,19 +1,8 @@
 #include "study_geometry.h"
-//#include <tool_cstring.h>
-//#include <Windows.h>
-//#include <op_shell_parameter.h>
-//#include <array>
 #include <action_solid.h>
 #include <test_window.h>
-//#include <mb_vector3d.h>
-//#include <mb_operation_result.h>
-//#include <mb_data.h>
 #include <action_polymesh.h>
-//#include <mesh.h>
 #include <op_polymesh_parameter.h>
-//#include <test_edit_space.h>
-//#include <polymesh.h>
-//#include <mesh_provider.h>
 #include <polymesh_topo.h>
 
 using namespace c3d;
